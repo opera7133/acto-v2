@@ -1,0 +1,20 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import logo from "../images/acto.svg";
+import { SITE_TITLE } from "../consts";
+---
+
+<header class="bg-neutral-800 text-white text-lg px-4">
+  <nav class="flex items-center justify-between max-w-6xl mx-auto py-1">
+    <h2>
+      <a href="/">
+        <img src={logo.src} alt={SITE_TITLE} class="h-8 inline-block" />
+      </a>
+    </h2>
+    <div class="flex gap-7">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+      <HeaderLink href="/contact">Contact</HeaderLink>
+    </div>
+  </nav>
+</header>

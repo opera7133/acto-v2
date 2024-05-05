@@ -1,0 +1,100 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { format } from "date-fns";
+import { Icon } from "astro-icon/components";
+
+type Props = CollectionEntry<"blog">["data"] & {
+  body?: string;
+  type?: "blog" | "page";
+};
+
+const {
+  title,
+  body,
+  pubDate,
+  updatedDate,
+  heroImage,
+  category,
+  type = "blog",
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={body
+    ? body.slice(0, 80).concat("...").replaceAll("\n", "")
+    : null}
+>
+  <article class="lg:col-span-3 lg:mr-8 mb-6">
+    <div class="hero-image">
+      {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+    </div>
+    <div class="prose max-w-none">
+      <div class="title">
+        <h1 class="text-3xl my-6">{title}</h1>
+        <div class="flex items-center gap-2 text-neutral-500 text-xs">
+          <time class="flex items-center"
+            ><Icon name="mdi:calendar" class="mr-0.5" />
+            {format(pubDate, "yyyy/MM/dd")}</time
+          >
+          {
+            updatedDate && (
+              <time class="flex items-center">
+                <Icon name="mdi:calendar-sync" class="mr-0.5" />
+                {format(updatedDate, "yyyy/MM/dd")}
+              </time>
+            )
+          }
+          <a
+            href={`/category/${category || "Uncategorized"}`}
+            class="flex items-center no-underline text-neutral-500 font-normal"
+          >
+            <Icon name="mdi:folder" class="mr-0.5" />
+            {category || "Uncategorized"}
+          </a>
+        </div>
+      </div>
+      <slot />
+    </div>
+    {type === "blog" && (
+    <div class="flex gap-4 my-8 justify-center">
+      <a
+        href=`https://twitter.com/intent/post?text=${title}+-+Acto&url=${encodeURIComponent(Astro.request.url)}&via=scgame_m`
+        target="_blank"
+        class="bg-black hover:bg-neutral-800 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+      >
+        <Icon name="ri:twitter-x-fill" class="text-white" size={22} />
+      </a>
+      <a
+        href=`https://www.facebook.com/sharer.php?src=bm&u=${encodeURIComponent(Astro.request.url)}&t=${title}%20-%20Acto`
+        target="_blank"
+        class="bg-blue-500 hover:bg-blue-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+      >
+        <Icon name="mdi:facebook" class="text-white" size={24} />
+      </a>
+      <a
+        href=`https://b.hatena.ne.jp/add?mode=confirm&url=${encodeURIComponent(Astro.request.url)}`
+        target="_blank"
+        class="bg-cyan-500 hover:bg-cyan-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+      >
+        <Icon name="cib:hatena-bookmark" class="text-white" size={20} />
+      </a>
+      <a
+        href=`https://getpocket.com/edit?url=${encodeURIComponent(Astro.request.url)}&title=${title}%20-%20Acto`
+        target="_blank"
+        class="bg-rose-500 hover:bg-rose-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+      >
+        <Icon name="cib:pocket" class="text-white" size={20} />
+      </a>
+      <a
+        href=`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(Astro.request.url)}`
+        target="_blank"
+        class="bg-lime-500 hover:bg-lime-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+      >
+        <Icon name="cib:line" class="text-white" size={20} />
+      </a>
+    </div>
+    )}
+  </article>
+</BaseLayout>

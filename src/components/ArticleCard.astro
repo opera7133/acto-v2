@@ -1,0 +1,28 @@
+---
+import { Icon } from "astro-icon/components";
+import { format } from "date-fns";
+const { title, body, heroImage, pubDate, category } = Astro.props;
+const shortDescription = body.slice(0, 80).concat("...").replaceAll("#", "");
+---
+
+<div class="group">
+  <div class="object-cover overflow-hidden">
+    <img
+      src={heroImage}
+      alt={title}
+      class="object-cover duration-200 group-hover:scale-110"
+    />
+  </div>
+  <div class="flex justify-between text-neutral-500 text-xs my-2">
+    <time class="flex items-center"
+      ><Icon name="mdi:calendar" class="mr-0.5" />
+      {format(pubDate, "yyyy/MM/dd")}</time
+    >
+    <span class="flex items-center"
+      ><Icon name="mdi:folder" class="mr-0.5" />
+      {category || "Uncategorized"}</span
+    >
+  </div>
+  <h2 class="font-bold">{title}</h2>
+  <p class="my-2 text-xs text-neutral-500">{shortDescription}</p>
+</div>

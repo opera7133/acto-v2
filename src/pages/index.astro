@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout>
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:col-span-3 mr-8">
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug}/`}>
+            <ArticleCard {...post.data} body={post.body} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

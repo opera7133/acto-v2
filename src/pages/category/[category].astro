@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const categories = posts.map((post) => post.data.category || "Uncategorized");
+  return categories
+    .filter((category, index) => categories.indexOf(category) === index)
+    .map((category) => ({ params: { category }, props: { posts } }));
+}
+const { category } = Astro.params;
+const { posts } = Astro.props;
+let filteredPosts;
+if (category === "Uncategorized") {
+  filteredPosts = posts.filter((post) => !post.data.category);
+} else {
+  filteredPosts = posts.filter((post) => post.data.category === category);
+}
+---
+
+<BaseLayout title={`${category} Archives`}>
+  <div class="lg:col-span-3 mr-8">
+    <h2 class="text-2xl font-bold mb-4">カテゴリー: {category}</h2>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {
+        filteredPosts.map((post) => (
+          <li>
+            <a href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug}/`}>
+              <ArticleCard {...post.data} body={post.body} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

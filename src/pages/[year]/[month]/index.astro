@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import { format } from "date-fns";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const yearMonth = posts.map((post) => ({
+    year: format(post.data.pubDate, "yyyy"),
+    month: format(post.data.pubDate, "MM"),
+  }));
+  return yearMonth.map(({ year, month }) => ({
+    params: { year, month },
+    props: { posts },
+  }));
+}
+const { year, month } = Astro.params;
+const { posts } = Astro.props;
+const filteredPosts = posts.filter((post) => {
+  return (
+    format(post.data.pubDate, "yyyy") === year &&
+    format(post.data.pubDate, "MM") === month
+  );
+});
+---
+
+<BaseLayout title={`${year}/${month} Archives`}>
+  <div class="lg:col-span-3 mr-8">
+    <h2 class="text-2xl font-bold mb-4">アーカイブ: {year}年{month}月</h2>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {
+        filteredPosts.map((post) => (
+          <li>
+            <a href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug}/`}>
+              <ArticleCard {...post.data} body={post.body} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

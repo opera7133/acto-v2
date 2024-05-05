@@ -1,0 +1,29 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Sidebar from "../components/Sidebar.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import "@fontsource-variable/noto-sans-sc";
+import "@fontsource-variable/noto-sans-jp";
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead
+      title={title ? `${title} - ${SITE_TITLE}` : SITE_TITLE}
+      description={description ? description : SITE_DESCRIPTION}
+    />
+  </head>
+  <body>
+    <Header />
+    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 my-8 px-4">
+      <slot />
+      <Sidebar />
+    </main>
+    <Footer />
+  </body>
+</html>

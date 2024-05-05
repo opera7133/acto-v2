@@ -1,0 +1,128 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+---
+
+<Layout
+  title="お問い合わせ"
+  pubDate={new Date("2023-01-29")}
+  category="Blog"
+  type="page"
+>
+  <form class="my-4 flex flex-col gap-2" id="form">
+    <div class="flex flex-col">
+      <label for="name">お名前</label>
+      <input
+        type="text"
+        name="Name"
+        id="name"
+        required
+        class="p-2 border border-gray-300 rounded"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="email">メールアドレス</label>
+      <input
+        type="email"
+        name="E-Mail"
+        id="email"
+        required
+        class="p-2 border border-gray-300 rounded"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="type">お問い合わせの種類</label>
+      <select
+        name="type"
+        id="Contact Type"
+        required
+        class="p-2 border border-gray-300 rounded"
+      >
+        <option value="お問い合わせ">お問い合わせ</option>
+        <option value="ご意見">ご意見</option>
+        <option value="執筆依頼">執筆依頼</option>
+        <option value="削除依頼">削除依頼</option>
+        <option value="その他">その他</option>
+      </select>
+    </div>
+    <div class="flex flex-col">
+      <label for="subject">件名</label>
+      <input
+        type="text"
+        name="Subject"
+        id="subject"
+        required
+        class="p-2 border border-gray-300 rounded"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label for="message">お問い合わせ内容</label>
+      <textarea
+        name="Message"
+        id="message"
+        required
+        class="p-2 border border-gray-300 rounded"
+        rows={5}></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="bg-neutral-800 text-white p-2 rounded mt-4 hover:bg-neutral-900 duration-200"
+    >
+      送信
+    </button>
+  </form>
+</Layout>
+
+<script
+  is:inline
+  src="https://www.google.com/recaptcha/api.js?render=6LdjmqAUAAAAAAbumjj4murG5aZzikJ9qr2RShgU&hl=ja"
+></script>
+<script>
+  const form = document.getElementById("form");
+  form?.addEventListener("submit", submitFormData);
+
+  function submitFormData(event: Event) {
+    event.preventDefault();
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute("6LdjmqAUAAAAAAbumjj4murG5aZzikJ9qr2RShgU", {
+          action: "submit",
+        })
+        .then(async (token) => {
+          const target = event.target as typeof event.target & {
+            name: { value: string };
+            email: { value: string };
+            type: { value: string };
+            subject: { value: string };
+            message: { value: string };
+          };
+
+          const data = {
+            name: target.name.value,
+            email: target.email.value,
+            type: target.type.value,
+            subject: target.subject.value,
+            message: target.message.value,
+            googleReCaptchaToken: token,
+          };
+
+          const formData = new FormData();
+          Object.entries(data).forEach(([key, value]) => {
+            formData.append(key, value);
+          });
+
+          await sendRequest(formData);
+        });
+    });
+  }
+
+  async function sendRequest(formData: FormData) {
+    return await fetch("https://acto.form.newt.so/v1/mcF7hAZsi", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    });
+  }
+</script>

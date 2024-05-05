@@ -1,0 +1,17 @@
+.border-anim:before{
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0;
+	border-bottom: solid 1px #fff;
+	transition: width 0.2s;
+}
+
+.border-anim:hover:before{
+	width: 100%;
+}
+
+a {
+	overflow-wrap: break-word;
+}
