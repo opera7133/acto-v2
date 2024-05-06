@@ -18,12 +18,14 @@ const {
   category,
   type = "blog",
 } = Astro.props;
+const importReg = /import\s+.*\s+from\s+.*;/g;
+const desc = body ? body.replaceAll("\n", "").replaceAll(importReg, "").slice(0, 80).concat("...") : null;
 ---
 
 <BaseLayout
   title={title}
   description={body
-    ? body.slice(0, 80).concat("...").replaceAll("\n", "")
+    ? desc
     : null}
 >
   <article class="lg:col-span-3 lg:mr-8 mb-6">
@@ -32,7 +34,7 @@ const {
     </div>
     <div class="prose max-w-none">
       <div class="title">
-        <h1 class="text-3xl my-6">{title}</h1>
+        <h1 class="text-3xl my-6 font-semibold">{title}</h1>
         <div class="flex items-center gap-2 text-neutral-500 text-xs">
           <time class="flex items-center"
             ><Icon name="mdi:calendar" class="mr-0.5" />

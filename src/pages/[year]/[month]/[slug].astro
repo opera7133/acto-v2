@@ -7,7 +7,7 @@ export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => ({
     params: {
-      slug: post.slug,
+      slug: post.slug.slice(5),
       year: format(post.data.pubDate, "yyyy"),
       month: format(post.data.pubDate, "MM"),
     },

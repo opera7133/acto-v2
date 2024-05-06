@@ -26,13 +26,15 @@ const filteredPosts = posts.filter((post) => {
 ---
 
 <BaseLayout title={`${year}/${month} Archives`}>
-  <div class="lg:col-span-3 mr-8">
+  <div class="lg:col-span-3 lg:mr-8">
     <h2 class="text-2xl font-bold mb-4">アーカイブ: {year}年{month}月</h2>
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {
         filteredPosts.map((post) => (
           <li>
-            <a href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug}/`}>
+            <a
+              href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
+            >
               <ArticleCard {...post.data} body={post.body} />
             </a>
           </li>

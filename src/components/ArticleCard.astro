@@ -2,7 +2,13 @@
 import { Icon } from "astro-icon/components";
 import { format } from "date-fns";
 const { title, body, heroImage, pubDate, category } = Astro.props;
-const shortDescription = body.slice(0, 80).concat("...").replaceAll("#", "");
+const importReg = /import.*from.*;/g;
+const shortDescription = body
+  .replaceAll("\n", "")
+  .replaceAll("#", "")
+  .replaceAll(importReg, "")
+  .slice(0, 80)
+  .concat("...");
 ---
 
 <div class="group">
@@ -23,6 +29,6 @@ const shortDescription = body.slice(0, 80).concat("...").replaceAll("#", "");
       {category || "Uncategorized"}</span
     >
   </div>
-  <h2 class="font-bold">{title}</h2>
+  <h2 class="font-semibold">{title}</h2>
   <p class="my-2 text-xs text-neutral-500">{shortDescription}</p>
 </div>

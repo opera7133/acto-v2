@@ -1,0 +1,93 @@
+---
+title: 'Umidigi BISONをRoot化する'
+category: 'Smartphone'
+pubDate: '2021-01-11'
+updatedDate: '2021-07-24'
+heroImage: '/images/2021/umidigi-bison-root/bison.png'
+---
+import { YouTube } from 'astro-embed';
+
+先日、AliexpressにてUMIDIGI BISONを購入しました。
+その後、一度Root化しようとして文鎮になりましたが、最終的には問題なくRoot化できたので、ここにやり方を置いておきます。
+
+## Umidigi BISONとは
+
+中国（香港）Umidigi社が作っているタフネススマホです。  
+いわゆる中華スマホ。  
+詳しくはレビューしているのでそっちを見てね
+
+<YouTube id="y34VSK3hRnM" />
+
+## Root化しよう
+
+Root化すると、
+
+- 文鎮化
+- ユーザーデータの消去
+
+が発生する可能性があります。
+
+### 準備
+
+※ADB / Fastboot のセットアップは終わっているものとします。  
+まずはファイルをいくつかダウンロードしていきます。  
+UMIDIGIは優しいので、公式コミュニティでROMを配布してくれています。
+
+https://community.umidigi.com/forum.php?mod=forumdisplay&fid=242
+
+このサイトで、  
+UMIDIGI BISON V1.0_20****** ROM – SPFT + OTA release  
+のページを開きます。（一番上のものをクリックしてください）  
+※BISON-Eではありません
+
+そして、SP Flash Toolの項目からROMと書かれているリンクをたどって、ROMファイルをダウンロードします。  
+rarファイルを解凍し、中からboot.imgとvbmeta.imgを適当なフォルダ（フォルダ名が日本語ではない）にコピーします。C直下に適当なフォルダを作ってそこに入れるのがおすすめです。
+
+次に、Umidigi BISON にMagisk Managerをインストールします。
+
+https://magiskmanager.com/
+
+このページからMagisk Managerをダウンロードし、インストールします。  
+これで、Root化の準備が終わりました。
+
+### 実践
+
+事前に設定から開発者オプションを有効化し、USBデバッグとOEMロック解除を有効にしてください。  
+先ほど解凍したboot.imgをスマホにコピーします。方法はなんでもいいですが、SDカードに入れるのが一番いいです。次にMagiskManagerを開き、Magisk横のインストールボタンをクリック→パッチするファイルを選択→boot.imgを選択→インストール を押します。すると、パッチされたboot.imgが生成されます。それをPCにコピーしておきます。（今回はboot_bison.imgという名前にしておきます）  
+スマホとPCをつなぎ、以下のコマンドを実行してfastbootモードにします。
+
+```bash
+adb reboot bootloader
+```
+
+スマホの画面下に小さくFASTBOOT Mode…と表示されたらOKです。  
+次のコマンドを入力してbootloaderをアンロックします。
+
+```bash
+fastboot flashing unlock
+```
+
+何か画面の表示が変わったら、ボリュームと電源ボタンを使ってUnlockを選択してください。  
+次に、先ほど用意したパッチ済みboot.img（boot_bison.img） / vbmeta.imgのフォルダに移動し、以下のコマンドを実行します。
+
+```bash
+fastboot --disable-verity --disable-verification flash boot boot_bison.img
+fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img
+fastboot reboot
+```
+
+これで起動したときに自動でMagiskがインストールされます。
+
+## 復旧
+
+### 症状
+
+bootloaderが表示されてから、BISONの画面に移行しない（フワーッて出てこない）
+
+### 直し方
+
+詳しくは解説しないので自分で見てね
+
+VCOM Driverをインストールしておきます。  
+先ほどダウンロードしたROMのページから、SP Flash Toolをダウンロードし、適当なフォルダに解凍します。  
+SP Flash Toolを起動し、解凍したROMの中のMT6771_Android_scatter.txtをscatter loading fileで読み込みます。Download Onlyの状態のまま、スマホを接続すると、一瞬だけスマホが認識されます。（Windowsの場合は認識されると音が出るので、それで確認してください。）認識されたら、素早くDownloadボタンを押してください。するとプログレスバーの色が様々に変わっていきます。最終的にチェックマークが出たら完了です。ウィンドウを閉じ、コードを抜いてスマホを起動させましょう。

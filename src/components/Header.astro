@@ -2,6 +2,7 @@
 import HeaderLink from "./HeaderLink.astro";
 import logo from "../images/acto.svg";
 import { SITE_TITLE } from "../consts";
+import { Icon } from "astro-icon/components";
 ---
 
 <header class="bg-neutral-800 text-white text-lg px-4">
@@ -11,10 +12,17 @@ import { SITE_TITLE } from "../consts";
         <img src={logo.src} alt={SITE_TITLE} class="h-8 inline-block" />
       </a>
     </h2>
-    <div class="flex gap-7">
+    <div class="hidden gap-7 md:flex">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
       <HeaderLink href="/contact">Contact</HeaderLink>
+    </div>
+    <div
+      id="hamburger"
+      class="w-16 h-16 flex items-center justify-center md:hidden"
+      onclick="document.getElementById('nav-links').style.display = 'block'"
+    >
+      <Icon name="mdi:menu" class="text-white" size={32} />
     </div>
   </nav>
 </header>

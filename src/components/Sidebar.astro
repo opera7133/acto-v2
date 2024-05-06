@@ -19,9 +19,12 @@ for (const post of posts) {
   const category = post.data.category;
   if (category && !categories.includes(category)) {
     categories.push(category);
+  } else if (!category && !categories.includes("Uncategorized")) {
+    categories.push("Uncategorized");
   }
 }
-categories.push("Uncategorized");
+categories.sort();
+archives.reverse();
 ---
 
 <div class="mt-8 md:m-0">
@@ -98,6 +101,7 @@ categories.push("Uncategorized");
     kofiwidget2.init("Support Me on Ko-fi", "#29abe0", "G2G521C62");
     kofiwidget2.draw();
   </script>
+  <img src="/busy.png" class="my-6" alt="時間のないサイト運営者リング" />
 </div>
 
 <script>

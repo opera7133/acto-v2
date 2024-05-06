@@ -10,11 +10,13 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <BaseLayout>
-  <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:col-span-3 mr-8">
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:col-span-3 lg:mr-8">
     {
       posts.map((post) => (
         <li>
-          <a href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug}/`}>
+          <a
+            href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
+          >
             <ArticleCard {...post.data} body={post.body} />
           </a>
         </li>
