@@ -8,4 +8,9 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: 'https://blog.wmsci.com',
   integrations: [mdx(), sitemap(), tailwind(), icon()],
+  markdown: {
+    shikiConfig: {
+      theme: 'monokai',
+    }
+  }
 });
