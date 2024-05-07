@@ -1,26 +1,48 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
+import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+const pages = Math.ceil(posts.length / 10);
 ---
 
 <BaseLayout>
-  <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:col-span-3 lg:mr-8">
-    {
-      posts.map((post) => (
-        <li>
+  <div class="lg:col-span-3 lg:mr-8">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {
+        posts.slice(0, 10).map((post) => (
+          <li>
+            <a
+              href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
+            >
+              <ArticleCard {...post.data} body={post.body} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="flex items-center justify-center my-6">
+      {
+        Array.from({ length: pages }, (_, i) => (
           <a
-            href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
+            href={`/${i === 0 ? "" : `page/${i + 1}/`}`}
+            class={
+              "relative mx-2 p-3 border-black" +
+              (i === 0 ? " border-b" : " border-anim")
+            }
           >
-            <ArticleCard {...post.data} body={post.body} />
+            {i + 1}
           </a>
-        </li>
-      ))
-    }
-  </ul>
+        ))
+      }
+      <a href="/page/2/" class="relative mx-2 p-3 border-black border-anim">
+        <Icon name="mdi:keyboard-arrow-right" class="w-4 h-6" />
+      </a>
+    </div>
+  </div>
 </BaseLayout>

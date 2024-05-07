@@ -5,21 +5,35 @@ import { format } from "date-fns";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
+
+  return posts.map((post, i) => ({
     params: {
       slug: post.slug.slice(5),
       year: format(post.data.pubDate, "yyyy"),
       month: format(post.data.pubDate, "MM"),
     },
-    props: post,
+    props: {
+      post,
+      prevPost: i === 0 ? null : posts[i - 1],
+      nextPost: i === posts.length - 1 ? null : posts[i + 1],
+    },
   }));
 }
-type Props = CollectionEntry<"blog">;
+type Props = {
+  post: CollectionEntry<"blog">;
+  prevPost: CollectionEntry<"blog"> | null;
+  nextPost: CollectionEntry<"blog"> | null;
+};
 
-const post = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data} body={post.body}>
+<BlogPost
+  {...post.data}
+  body={post.body}
+  prevPost={prevPost}
+  nextPost={nextPost}
+>
   <Content />
 </BlogPost>

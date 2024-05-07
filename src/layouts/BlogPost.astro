@@ -7,6 +7,8 @@ import { Icon } from "astro-icon/components";
 type Props = CollectionEntry<"blog">["data"] & {
   body?: string;
   type?: "blog" | "page";
+  prevPost?: CollectionEntry<"blog"> | null;
+  nextPost?: CollectionEntry<"blog"> | null;
 };
 
 const {
@@ -16,6 +18,8 @@ const {
   updatedDate,
   heroImage,
   category,
+  prevPost,
+  nextPost,
   type = "blog",
 } = Astro.props;
 const importReg = /import\s+.*\s+from\s+.*;/g;
@@ -60,43 +64,75 @@ const desc = body ? body.replaceAll("\n", "").replaceAll(importReg, "").slice(0,
       <slot />
     </div>
     {type === "blog" && (
-    <div class="flex gap-4 my-8 justify-center">
-      <a
-        href=`https://twitter.com/intent/post?text=${title}+-+Acto&url=${encodeURIComponent(Astro.request.url)}&via=scgame_m`
-        target="_blank"
-        class="bg-black hover:bg-neutral-800 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
-      >
-        <Icon name="ri:twitter-x-fill" class="text-white" size={22} />
-      </a>
-      <a
-        href=`https://www.facebook.com/sharer.php?src=bm&u=${encodeURIComponent(Astro.request.url)}&t=${title}%20-%20Acto`
-        target="_blank"
-        class="bg-blue-500 hover:bg-blue-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
-      >
-        <Icon name="mdi:facebook" class="text-white" size={24} />
-      </a>
-      <a
-        href=`https://b.hatena.ne.jp/add?mode=confirm&url=${encodeURIComponent(Astro.request.url)}`
-        target="_blank"
-        class="bg-cyan-500 hover:bg-cyan-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
-      >
-        <Icon name="cib:hatena-bookmark" class="text-white" size={20} />
-      </a>
-      <a
-        href=`https://getpocket.com/edit?url=${encodeURIComponent(Astro.request.url)}&title=${title}%20-%20Acto`
-        target="_blank"
-        class="bg-rose-500 hover:bg-rose-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
-      >
-        <Icon name="cib:pocket" class="text-white" size={20} />
-      </a>
-      <a
-        href=`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(Astro.request.url)}`
-        target="_blank"
-        class="bg-lime-500 hover:bg-lime-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
-      >
-        <Icon name="cib:line" class="text-white" size={20} />
-      </a>
-    </div>
+      <>
+        <div class="flex gap-4 my-12 justify-center">
+          <a
+            href=`https://twitter.com/intent/post?text=${title}+-+Acto&url=${encodeURIComponent(Astro.request.url)}&via=scgame_m`
+            target="_blank"
+            class="bg-black hover:bg-neutral-800 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+          >
+            <Icon name="ri:twitter-x-fill" class="text-white" size={22} />
+          </a>
+          <a
+            href=`https://www.facebook.com/sharer.php?src=bm&u=${encodeURIComponent(Astro.request.url)}&t=${title}%20-%20Acto`
+            target="_blank"
+            class="bg-blue-500 hover:bg-blue-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+          >
+            <Icon name="mdi:facebook" class="text-white" size={24} />
+          </a>
+          <a
+            href=`https://b.hatena.ne.jp/add?mode=confirm&url=${encodeURIComponent(Astro.request.url)}`
+            target="_blank"
+            class="bg-cyan-500 hover:bg-cyan-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+          >
+            <Icon name="cib:hatena-bookmark" class="text-white" size={20} />
+          </a>
+          <a
+            href=`https://getpocket.com/edit?url=${encodeURIComponent(Astro.request.url)}&title=${title}%20-%20Acto`
+            target="_blank"
+            class="bg-rose-500 hover:bg-rose-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+          >
+            <Icon name="cib:pocket" class="text-white" size={20} />
+          </a>
+          <a
+            href=`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(Astro.request.url)}`
+            target="_blank"
+            class="bg-lime-500 hover:bg-lime-600 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+          >
+            <Icon name="cib:line" class="text-white" size={20} />
+          </a>
+        </div>
+        <div class="flex gap-3 items-center text-sm my-4">
+          <b>カテゴリー</b>
+          <p>/</p>
+          <a
+            href={`/category/${category || "Uncategorized"}`}
+            class="hover:underline"
+          >
+            {category || "Uncategorized"}
+          </a>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between gap-3 my-8">
+          {prevPost && (
+            <a href={`/${format(prevPost.data.pubDate, "yyyy/MM/")}${prevPost.slug.slice(5)}`} class="text-sm hover:opacity-80 duration-200 md:w-1/2 mr-auto">
+              <div class="flex items-center gap-2">
+                <Icon name="mdi:keyboard-arrow-left" class="text-lg" />
+                <img src={prevPost.data.heroImage} alt="" class="h-16" />
+                <p class="text-left flex-grow">{prevPost.data.title}</p>
+              </div>
+            </a>
+          )}
+          {nextPost && (
+            <a href={`/${format(nextPost.data.pubDate, "yyyy/MM/")}${nextPost.slug.slice(5)}`} class="text-sm hover:opacity-80 duration-200 md:w-1/2 ml-auto">
+              <div class="flex items-center gap-2">
+                <p class="text-right flex-grow">{nextPost.data.title}</p>
+                <img src={nextPost.data.heroImage} alt="" class="h-16" />
+                <Icon name="mdi:keyboard-arrow-right" class="text-lg" />
+              </div>
+            </a>
+          )}
+        </div>
+      </>
     )}
   </article>
 </BaseLayout>

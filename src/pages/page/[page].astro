@@ -1,0 +1,72 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import { Icon } from "astro-icon/components";
+import { format } from "date-fns";
+import type { GetStaticPathsOptions } from "astro";
+const posts = await getCollection("blog");
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  return paginate(posts, { pageSize: 10 });
+}
+const pages = Math.ceil(posts.length / 10);
+const { page } = Astro.props;
+---
+
+<BaseLayout>
+  <div class="lg:col-span-3 lg:mr-8">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {
+        page.data.map((post) => (
+          <li>
+            <a
+              href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
+            >
+              <ArticleCard {...post.data} body={post.body} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="flex items-center justify-center my-6">
+      {
+        page.currentPage === 1 ? null : (
+          <a
+            href={
+              page.currentPage - 1 === 1 ? "/" : `/page/${page.currentPage - 1}`
+            }
+            class="relative mx-2 p-3 border-black border-anim"
+          >
+            <Icon name="mdi:keyboard-arrow-left" class="w-4 h-6" />
+          </a>
+        )
+      }
+      {
+        Array.from({ length: pages }, (_, i) => (
+          <a
+            href={`/${i === 0 ? "" : `page/${i + 1}/`}`}
+            class={
+              "relative mx-2 p-3 border-black" +
+              (i + 1 === page.currentPage ? " border-b" : " border-anim")
+            }
+          >
+            {i + 1}
+          </a>
+        ))
+      }
+      {
+        page.data.length < 10 ? null : (
+          <a
+            href={`/page/${page.currentPage + 1}`}
+            class="relative mx-2 p-3 border-black border-anim"
+          >
+            <Icon name="mdi:keyboard-arrow-right" class="w-4 h-6" />
+          </a>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>

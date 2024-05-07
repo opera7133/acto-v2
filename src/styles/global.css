@@ -4,8 +4,12 @@
 	left: 0;
 	bottom: 0;
 	width: 0;
-	border-bottom: solid 1px #fff;
+	border-bottom: solid 1px #000;
 	transition: width 0.2s;
+}
+
+.border-anim.border-black:before {
+	border-color: #000;
 }
 
 .border-anim:hover:before{
