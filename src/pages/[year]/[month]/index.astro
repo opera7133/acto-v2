@@ -5,7 +5,9 @@ import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
   const yearMonth = posts.map((post) => ({
     year: format(post.data.pubDate, "yyyy"),
     month: format(post.data.pubDate, "MM"),
