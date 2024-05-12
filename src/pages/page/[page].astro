@@ -58,7 +58,7 @@ const { page } = Astro.props;
         ))
       }
       {
-        page.data.length < 10 ? null : (
+        page.data.length > 10 ? null : (
           <a
             href={`/page/${page.currentPage + 1}`}
             class="relative mx-2 p-3 border-black border-anim"
