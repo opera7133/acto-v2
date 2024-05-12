@@ -106,12 +106,33 @@ import Layout from "../layouts/BlogPost.astro";
             googleReCaptchaToken: token,
           };
 
+          if (
+            !data.name ||
+            !data.email ||
+            !data.type ||
+            !data.subject ||
+            !data.message
+          ) {
+            alert("全ての項目を入力してください");
+            return;
+          }
+
           const formData = new FormData();
           Object.entries(data).forEach(([key, value]) => {
             formData.append(key, value);
           });
 
-          await sendRequest(formData);
+          try {
+            const res = await sendRequest(formData);
+            if (res.ok) {
+              location.href = "/success";
+            } else {
+              alert("送信に失敗しました");
+            }
+          } catch (error) {
+            console.error(error);
+            alert("送信に失敗しました");
+          }
         });
     });
   }

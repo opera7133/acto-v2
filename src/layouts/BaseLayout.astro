@@ -8,7 +8,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import "@fontsource-variable/noto-sans-sc";
 import "@fontsource-variable/noto-sans-jp";
 
-const { title, description, image } = Astro.props;
+const { title, description, image, noindex } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,6 +18,7 @@ const { title, description, image } = Astro.props;
       title={title ? `${title} - ${SITE_TITLE}` : SITE_TITLE}
       description={description ? description : SITE_DESCRIPTION}
       image={image || "/images/ogp.png"}
+      noindex={noindex}
     />
   </head>
   <body>

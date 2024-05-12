@@ -11,6 +11,7 @@ type Props = CollectionEntry<"blog">["data"] & {
   type?: "blog" | "page";
   prevPost?: CollectionEntry<"blog"> | null;
   nextPost?: CollectionEntry<"blog"> | null;
+  noindex?: boolean;
 };
 
 let {
@@ -23,6 +24,7 @@ let {
   prevPost,
   nextPost,
   type = "blog",
+  noindex = false,
 } = Astro.props;
 const importReg = /import\s+.*\s+from\s+.*;/g;
 const desc = body ? body.replaceAll("\n", "").replaceAll(importReg, "").slice(0, 80).concat("...") : null;
@@ -45,6 +47,7 @@ if (heroImage && !images[heroImage])
     ? desc
     : null}
   image={heroImage ? (await images[heroImage]()).default.src : null}
+  noindex={noindex}
 >
   <article class="lg:col-span-3 lg:mr-8 mb-6">
     <div class="hero-image">
