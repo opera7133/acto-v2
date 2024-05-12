@@ -44,7 +44,7 @@ if (heroImage && !images[heroImage])
   description={body
     ? desc
     : null}
-  image={heroImage ? heroImage.replace("/src/assets", "") : null}
+  image={heroImage ? (await images[heroImage]()).default.src : null}
 >
   <article class="lg:col-span-3 lg:mr-8 mb-6">
     <div class="hero-image">
