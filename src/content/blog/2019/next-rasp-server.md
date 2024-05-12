@@ -195,11 +195,11 @@ sudo apt-get install php7.4-mysql php7.4-pgsql php7.4-zip php7.4-dev php7.4-mbst
 今回は外部に公開するため、ルーターのポート開放を行います。  
 私の家ではNuro光を使用しているため、F660Aの画面を参考に説明します。
 
-![ポートフォワーディングメニュー](../../../images/2019/next-rasp-server/rasp1.png)
+![ポートフォワーディングメニュー](../../../assets/images/2019/next-rasp-server/rasp1.png)
 
 アプリケーションからポートフォワーディングを選択
 
-![ポートフォワーディングサンプル](../../../images/2019/next-rasp-server/rasp2.png)
+![ポートフォワーディングサンプル](../../../assets/images/2019/next-rasp-server/rasp2.png)
 
 上の画像のように入力  
 （名前は適当に。内部ホストのIPアドレスはRaspberry piのIPアドレスを入力）  
