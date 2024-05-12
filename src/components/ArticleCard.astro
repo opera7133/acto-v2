@@ -12,7 +12,7 @@ const shortDescription = body
   .slice(0, 80)
   .concat("...");
 if (!heroImage) {
-  heroImage = "/src/assets/images/placeholder.jpg";
+  heroImage = "/src/assets/images/placeholder.png";
 }
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/images/**/*.{jpeg,jpg,png}"

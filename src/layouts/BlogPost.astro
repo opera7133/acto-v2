@@ -28,7 +28,7 @@ const importReg = /import\s+.*\s+from\s+.*;/g;
 const desc = body ? body.replaceAll("\n", "").replaceAll(importReg, "").slice(0, 80).concat("...") : null;
 
 if (!heroImage && type === "blog") {
-  heroImage = "/src/assets/images/placeholder.jpg";
+  heroImage = "/src/assets/images/placeholder.png";
 }
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/images/**/*.{jpeg,jpg,png}"
@@ -44,6 +44,7 @@ if (heroImage && !images[heroImage])
   description={body
     ? desc
     : null}
+  image={heroImage ? heroImage.replace("/src/assets", "") : null}
 >
   <article class="lg:col-span-3 lg:mr-8 mb-6">
     <div class="hero-image">
@@ -130,7 +131,7 @@ if (heroImage && !images[heroImage])
             <a href={`/${format(prevPost.data.pubDate, "yyyy/MM/")}${prevPost.slug.slice(5)}`} class="text-sm hover:opacity-80 duration-200 md:w-1/2 mr-auto">
               <div class="flex items-center gap-2">
                 <Icon name="mdi:keyboard-arrow-left" class="text-lg" />
-                <Image src={images[prevPost.data.heroImage || "/src/assets/images/placeholder.jpg"]()} alt={prevPost.data.title} class="h-16" height="64" />
+                <Image src={images[prevPost.data.heroImage || "/src/assets/images/placeholder.png"]()} alt={prevPost.data.title} class="h-16" height="64" />
                 <p class="text-left flex-grow">{prevPost.data.title}</p>
               </div>
             </a>
@@ -139,7 +140,7 @@ if (heroImage && !images[heroImage])
             <a href={`/${format(nextPost.data.pubDate, "yyyy/MM/")}${nextPost.slug.slice(5)}`} class="text-sm hover:opacity-80 duration-200 md:w-1/2 ml-auto">
               <div class="flex items-center gap-2">
                 <p class="text-right flex-grow">{nextPost.data.title}</p>
-                <Image src={images[nextPost.data.heroImage || "/src/assets/images/placeholder.jpg"]()} alt={nextPost.data.title} class="h-16" height="64" />
+                <Image src={images[nextPost.data.heroImage || "/src/assets/images/placeholder.png"]()} alt={nextPost.data.title} class="h-16" height="64" />
                 <Icon name="mdi:keyboard-arrow-right" class="text-lg" />
               </div>
             </a>

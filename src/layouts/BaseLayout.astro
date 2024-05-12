@@ -8,7 +8,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import "@fontsource-variable/noto-sans-sc";
 import "@fontsource-variable/noto-sans-jp";
 
-const { title, description } = Astro.props;
+const { title, description, image } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,6 +17,7 @@ const { title, description } = Astro.props;
     <BaseHead
       title={title ? `${title} - ${SITE_TITLE}` : SITE_TITLE}
       description={description ? description : SITE_DESCRIPTION}
+      image={image || "/images/ogp.png"}
     />
   </head>
   <body>
