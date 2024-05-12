@@ -23,19 +23,19 @@ WebArchive版
 
 最初に、ダウンロードしたファイルを実行し、解凍します。
 
-![ダウンロード](/src/assets/images/2019/chusei-presto-pvr/c00.png)
+![ダウンロード](../../../assets/images/2019/chusei-presto-pvr/c00.png)
 
-![解凍](/src/assets/images/2019/chusei-presto-pvr/c01.png)
+![解凍](../../../assets/images/2019/chusei-presto-pvr/c01.png)
 
-![解凍したファイル](/src/assets/images/2019/chusei-presto-pvr/c02.png)
+![解凍したファイル](../../../assets/images/2019/chusei-presto-pvr/c02.png)
 
 次に、解凍したフォルダの中にある`Setup.exe`を実行する前に、PVRフォルダの中にある`LUTRAY.ini`を編集します。
 
-![LUTRAY.ini](/src/assets/images/2019/chusei-presto-pvr/c03.png)
+![LUTRAY.ini](../../../assets/images/2019/chusei-presto-pvr/c03.png)
 
 ファイルの中にOEM-Product-IDというものがあるので、例えば`T0000-00000-00000`とか入力します。  
 保存すれば、正常にインストールができます。
 
-![変更後](/src/assets/images/2019/chusei-presto-pvr/c04.png)
+![変更後](../../../assets/images/2019/chusei-presto-pvr/c04.png)
 
 ある記事ではRegeditで認証させるという方法もあったようですが、私はあまりお勧めしません。

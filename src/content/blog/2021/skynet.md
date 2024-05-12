@@ -23,12 +23,12 @@ https://siasky.net
 試しにこの記事のアイキャッチ画像をアップロードしてみます。  
 今回は公式のポータルを使用。
 
-![siasky.net](/src/assets/images/2021/skynet/image-7.png)
+![siasky.net](../../../assets/images/2021/skynet/image-7.png)
 
 アップロードしてしばらく待つと…
 
-![アップロード中](/src/assets/images/2021/skynet/image-8.png)
-![アップロード完了](/src/assets/images/2021/skynet/image-9.png)
+![アップロード中](../../../assets/images/2021/skynet/image-8.png)
+![アップロード完了](../../../assets/images/2021/skynet/image-9.png)
 
 こんな感じでSkyリンクとともにアップロードされます。  
 アカウント登録なしの場合は、90日でファイルが削除されるそうです。
@@ -63,11 +63,11 @@ print("Download successful")
 
 アップロードされると、skylinkが表示されます。
 
-![アップロード後の表示](/src/assets/images/2021/skynet/image-10.png)
+![アップロード後の表示](../../../assets/images/2021/skynet/image-10.png)
 
 ダウンロードするときはこのようになります。
 
-![ダウンロード時](/src/assets/images/2021/skynet/image-11.png)
+![ダウンロード時](../../../assets/images/2021/skynet/image-11.png)
 
 ## 用途
 

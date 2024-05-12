@@ -3,7 +3,7 @@ title: 'きつねゆっくり素材をYMM4用に変換するやつ'
 category: 'Software'
 pubDate: '2020-03-12'
 updatedDate: '2021-10-26'
-heroImage: '/src/assets/images/2020/ymm4_chara/ymm4_chara.png'
+heroImage: '../../../assets/images/2020/ymm4_chara/ymm4_chara.png'
 ---
 
 YMM4が単体出力できることを知って、最近はそっちを使うようにしています。  

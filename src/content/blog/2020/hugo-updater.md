@@ -3,7 +3,7 @@ title: 'Hugo Updater'
 category: 'Software'
 pubDate: '2020-02-02'
 updatedDate: '2022-01-26'
-heroImage: '/src/assets/images/2020/hugo-updater/program.png'
+heroImage: '../../../assets/images/2020/hugo-updater/program.png'
 ---
 
 ## 機能
