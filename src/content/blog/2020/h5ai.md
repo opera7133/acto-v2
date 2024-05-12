@@ -3,7 +3,7 @@ title: 'h5aiでインデックスを見やすくする'
 category: 'Server'
 pubDate: '2020-08-07'
 updatedDate: '2020-12-29'
-heroImage: '/images/2020/h5ai/h5ai.png'
+heroImage: '/src/assets/images/2020/h5ai/h5ai.png'
 ---
 
 h5aiというサーバーのインデックスページをきれいにできるものがあります。  

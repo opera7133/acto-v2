@@ -3,7 +3,7 @@ title: 'Uniontech OS（统信UOS）を使ってみる'
 category: 'Linux'
 pubDate: '2021-05-08'
 updatedDate: '2022-01-20'
-heroImage: '/images/2021/uniontech-os/Screen-Capture_dde-desktop_20210508151556.png'
+heroImage: '/src/assets/images/2021/uniontech-os/Screen-Capture_dde-desktop_20210508151556.png'
 ---
 
 現在中国で開発されているDebian（Deepin）ベースのOS、UOSというものがあります。  
@@ -63,47 +63,47 @@ https://drive.google.com/file/d/1XcL6ZedgJafPmtO0pALkk64iAQzWhxHp/view?usp=shari
 
 まずは起動させます。
 
-![ブートメニュー](/images/2021/uniontech-os/uins1.jpg)
+![ブートメニュー](/src/assets/images/2021/uniontech-os/uins1.jpg)
 
-![起動画面](/images/2021/uniontech-os/uins2.jpg)
+![起動画面](/src/assets/images/2021/uniontech-os/uins2.jpg)
 
-![言語選択](/images/2021/uniontech-os/uins3.jpg)
+![言語選択](/src/assets/images/2021/uniontech-os/uins3.jpg)
 
-![ディスク選択](/images/2021/uniontech-os/uins4.jpg)
+![ディスク選択](/src/assets/images/2021/uniontech-os/uins4.jpg)
 
-![インストール中](/images/2021/uniontech-os/uins5.jpg)
+![インストール中](/src/assets/images/2021/uniontech-os/uins5.jpg)
 
-![インストール完了](/images/2021/uniontech-os/uins6.jpg)
+![インストール完了](/src/assets/images/2021/uniontech-os/uins6.jpg)
 
-![タイムゾーン選択](/images/2021/uniontech-os/uins7.jpg)
+![タイムゾーン選択](/src/assets/images/2021/uniontech-os/uins7.jpg)
 
-![アカウント作成](/images/2021/uniontech-os/uins8.jpg)
+![アカウント作成](/src/assets/images/2021/uniontech-os/uins8.jpg)
 
-![完了](/images/2021/uniontech-os/uins9.jpg)
+![完了](/src/assets/images/2021/uniontech-os/uins9.jpg)
 
 ## スクリーンショット
 
-![デスクトップ](/images/2021/uniontech-os/Screen-Capture_dde-desktop_20210508151556.png)
+![デスクトップ](/src/assets/images/2021/uniontech-os/Screen-Capture_dde-desktop_20210508151556.png)
 
-![コントロールセンター](/images/2021/uniontech-os/Screen-Capture_20210508152131.png)
+![コントロールセンター](/src/assets/images/2021/uniontech-os/Screen-Capture_20210508152131.png)
 
-![ブラウザ](/images/2021/uniontech-os/Screen-Capture_20210508154053.png)
+![ブラウザ](/src/assets/images/2021/uniontech-os/Screen-Capture_20210508154053.png)
 
-![ファイルブラウザ](/images/2021/uniontech-os/Screen-Capture_20210508154442.png)
+![ファイルブラウザ](/src/assets/images/2021/uniontech-os/Screen-Capture_20210508154442.png)
 
-![アプリストア](/images/2021/uniontech-os/Screen-Capture_20210508154848.png)
+![アプリストア](/src/assets/images/2021/uniontech-os/Screen-Capture_20210508154848.png)
 
 ## Rootを取る
 
 Rootを取るためには、UnionIDが必要です。
 
 1. 「コントロールセンター」→「UnionID」
-![コントロールセンター](/images/2021/uniontech-os/uroot1.png)
+![コントロールセンター](/src/assets/images/2021/uniontech-os/uroot1.png)
 2. プライバシーポリシーに同意し、ログイン。
-![プライバシーポリシー](/images/2021/uniontech-os/uroot2.png)
+![プライバシーポリシー](/src/assets/images/2021/uniontech-os/uroot2.png)
 3. もう一つポリシーがあるので同意する。
 4. 「一般設定」→「開発者モード」→「ルートアクセスを要求」
-![開発者モード](/images/2021/uniontech-os/uroot4.png)
+![開発者モード](/src/assets/images/2021/uniontech-os/uroot4.png)
 5. オンラインを選択し、次へ
 6. 「同意してルートアクセスを要求」にチェックを入れ、Confirm
 7. 再起動で完了

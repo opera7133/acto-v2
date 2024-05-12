@@ -1,7 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
 import { format } from "date-fns";
-const { title, body, heroImage, pubDate, category } = Astro.props;
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+let { title, body, heroImage, pubDate, category } = Astro.props;
 const importReg = /import.*from.*;/g;
 const shortDescription = body
   .replaceAll("\n", "")
@@ -9,12 +11,22 @@ const shortDescription = body
   .replaceAll(importReg, "")
   .slice(0, 80)
   .concat("...");
+if (!heroImage) {
+  heroImage = "/src/assets/images/placeholder.jpg";
+}
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/**/*.{jpeg,jpg,png}"
+);
+if (!images[heroImage])
+  throw new Error(
+    `"${heroImage}" does not exist in glob: "src/assets/*.{jpeg,jpg,png}"`
+  );
 ---
 
 <div class="group">
   <div class="object-cover overflow-hidden">
-    <img
-      src={heroImage}
+    <Image
+      src={images[heroImage]()}
       alt={title}
       class="object-cover duration-200 group-hover:scale-110"
     />

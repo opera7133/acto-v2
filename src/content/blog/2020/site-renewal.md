@@ -3,7 +3,7 @@ title: 'サイト改修とかの話'
 category: 'Web'
 pubDate: '2020-12-28'
 updatedDate: '2020-12-29'
-heroImage: '/images/2020/site-renewal/renew.png'
+heroImage: '/src/assets/images/2020/site-renewal/renew.png'
 ---
 
 最近自室が冷えてきました。ただ、エアコンをつけると加湿器が正常に機能しなくなって乾燥するのであんまり使いたくないです。でも寒い。

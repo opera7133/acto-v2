@@ -2,7 +2,7 @@
 title: 'Skynetを使って簡単にファイルをアップロードしよう'
 category: 'Web'
 pubDate: '2021-07-24'
-heroImage: '/images/2021/skynet/skynet.png'
+heroImage: '/src/assets/images/2021/skynet/skynet.png'
 ---
 
 ## Skynetとは？
@@ -23,12 +23,12 @@ https://siasky.net
 試しにこの記事のアイキャッチ画像をアップロードしてみます。  
 今回は公式のポータルを使用。
 
-![siasky.net](/images/2021/skynet/image-7.png)
+![siasky.net](/src/assets/images/2021/skynet/image-7.png)
 
 アップロードしてしばらく待つと…
 
-![アップロード中](/images/2021/skynet/image-8.png)
-![アップロード完了](/images/2021/skynet/image-9.png)
+![アップロード中](/src/assets/images/2021/skynet/image-8.png)
+![アップロード完了](/src/assets/images/2021/skynet/image-9.png)
 
 こんな感じでSkyリンクとともにアップロードされます。  
 アカウント登録なしの場合は、90日でファイルが削除されるそうです。
@@ -63,11 +63,11 @@ print("Download successful")
 
 アップロードされると、skylinkが表示されます。
 
-![アップロード後の表示](/images/2021/skynet/image-10.png)
+![アップロード後の表示](/src/assets/images/2021/skynet/image-10.png)
 
 ダウンロードするときはこのようになります。
 
-![ダウンロード時](/images/2021/skynet/image-11.png)
+![ダウンロード時](/src/assets/images/2021/skynet/image-11.png)
 
 ## 用途
 
