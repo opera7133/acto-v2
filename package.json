@@ -18,6 +18,7 @@
     "@fontsource-variable/noto-sans-jp": "^5.0.19",
     "@fontsource-variable/noto-sans-sc": "^5.0.6",
     "astro": "^4.7.1",
+    "astro-analytics": "^2.7.0",
     "astro-embed": "^0.7.2",
     "astro-icon": "^1.1.0",
     "date-fns": "^3.6.0",
