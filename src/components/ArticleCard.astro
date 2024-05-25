@@ -5,10 +5,12 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 let { title, body, heroImage, pubDate, category } = Astro.props;
 const importReg = /import.*from.*;/g;
+const imageReg = /!\[.*\]\((.*)\)/g;
 const shortDescription = body
   .replaceAll("\n", "")
   .replaceAll("#", "")
   .replaceAll(importReg, "")
+  .replaceAll(imageReg, "")
   .slice(0, 80)
   .concat("...");
 if (!heroImage) {

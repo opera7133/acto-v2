@@ -27,7 +27,8 @@ let {
   noindex = false,
 } = Astro.props;
 const importReg = /import\s+.*\s+from\s+.*;/g;
-const desc = body ? body.replaceAll("\n", "").replaceAll(importReg, "").slice(0, 80).concat("...") : null;
+const imageReg = /!\[.*\]\((.*)\)/g;
+const desc = body ? body.replaceAll("\n", "").replaceAll(importReg, "").replaceAll(imageReg, "").slice(0, 80).concat("...") : null;
 
 if (!heroImage && type === "blog") {
   heroImage = "/src/assets/images/placeholder.png";
