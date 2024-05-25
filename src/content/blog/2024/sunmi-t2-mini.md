@@ -13,13 +13,13 @@ heroImage: '/src/assets/images/2024/sunmi-t2-mini/hero.jpeg'
 
 レシートプリンターとLCDディスプレイとNFCタッチとQRコードリーダーのついたAndroidタブレットです。
 
-スペックは以下のページ参照。
+スペックは以下のページ参照。メモリは1.8GBありました。
 
 https://www.e-welcom.com/products/h/other/sunmi-t2-mini/
 
 私の買ったモデルは80mmレシートプリンターのついたモデルでした。
 
-ちなみにSUNMI M2 MINIもついてました。
+ちなみにSUNMI M2もついてました。
 
 https://www.e-welcom.com/products/h/terminal/sunmi-m2/
 
