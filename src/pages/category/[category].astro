@@ -5,9 +5,10 @@ import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
 export async function getStaticPaths() {
-  const posts = (await getCollection("blog")).sort(
+  let posts = (await getCollection("blog")).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
+  posts = posts.filter((post) => post.data.draft !== true);
   const categories = posts.map((post) => post.data.category || "Uncategorized");
   return categories
     .filter((category, index) => categories.indexOf(category) === index)

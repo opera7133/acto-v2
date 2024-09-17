@@ -5,9 +5,10 @@ import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
-const posts = (await getCollection("blog")).sort(
+let posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+posts = posts.filter((post) => post.data.draft !== true);
 const pages = Math.ceil(posts.length / 10);
 ---
 

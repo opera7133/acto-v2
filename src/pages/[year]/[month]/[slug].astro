@@ -4,8 +4,8 @@ import BlogPost from "../../../layouts/BlogPost.astro";
 import { format } from "date-fns";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-
+  let posts = await getCollection("blog");
+  posts = posts.filter((post) => post.data.draft !== true);
   return posts.map((post, i) => ({
     params: {
       slug: post.slug.slice(5),
