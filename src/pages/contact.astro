@@ -77,11 +77,11 @@ import Layout from "../layouts/BlogPost.astro";
   is:inline
   src="https://www.google.com/recaptcha/api.js?render=6LdjmqAUAAAAAAbumjj4murG5aZzikJ9qr2RShgU&hl=ja"
 ></script>
-<script>
+<script is:inline>
   const form = document.getElementById("form");
   form?.addEventListener("submit", submitFormData);
 
-  function submitFormData(event: Event) {
+  function submitFormData(event) {
     event.preventDefault();
     grecaptcha.ready(() => {
       grecaptcha
@@ -89,13 +89,7 @@ import Layout from "../layouts/BlogPost.astro";
           action: "submit",
         })
         .then(async (token) => {
-          const target = event.target as typeof event.target & {
-            name: { value: string };
-            email: { value: string };
-            type: { value: string };
-            subject: { value: string };
-            message: { value: string };
-          };
+          const target = event.target;
 
           const data = {
             name: target.name.value,
@@ -137,7 +131,7 @@ import Layout from "../layouts/BlogPost.astro";
     });
   }
 
-  async function sendRequest(formData: FormData) {
+  async function sendRequest(formData) {
     return await fetch("https://acto.form.newt.so/v1/mcF7hAZsi", {
       method: "POST",
       body: formData,
