@@ -21,6 +21,8 @@
     "astro-analytics": "^2.7.0",
     "astro-embed": "^0.7.2",
     "astro-icon": "^1.1.1",
+    "canvas": "^3.0.0-rc2",
+    "commander": "^12.1.0",
     "date-fns": "^4.1.0",
     "tailwindcss": "^3.4.11",
     "typescript": "^5.6.2"
