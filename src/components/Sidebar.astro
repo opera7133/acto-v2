@@ -5,7 +5,9 @@ import { format } from "date-fns";
 let posts = (await getCollection("blog")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
-posts = posts.filter((post) => post.data.draft !== true);
+posts = posts.filter(
+  (post) => post.data.draft !== true && post.data.category !== "Zakki"
+);
 const archives: {
   path: string;
   archive: string;
@@ -25,7 +27,6 @@ for (const post of posts) {
   }
 }
 categories.sort();
-categories = categories.filter((category) => category !== "Zakki");
 archives.reverse();
 ---
 
