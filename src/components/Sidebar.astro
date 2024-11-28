@@ -10,7 +10,7 @@ const archives: {
   path: string;
   archive: string;
 }[] = [];
-const categories: string[] = [];
+let categories: string[] = [];
 for (const post of posts) {
   const archivePath = format(post.data.pubDate, "yyyy/MM/");
   const archive = format(post.data.pubDate, "yyyy年MM月");
@@ -25,6 +25,7 @@ for (const post of posts) {
   }
 }
 categories.sort();
+categories = categories.filter((category) => category !== "Zakki");
 archives.reverse();
 ---
 

@@ -1,21 +1,61 @@
-.border-anim:before{
-	content: '';
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 0;
-	border-bottom: solid 1px #fff;
-	transition: width 0.2s;
+.border-anim:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  border-bottom: solid 1px #fff;
+  transition: width 0.2s;
 }
 
 .border-anim.border-black:before {
-	border-color: #000;
+  border-color: #000;
 }
 
-.border-anim:hover:before{
-	width: 100%;
+.border-anim:hover:before {
+  width: 100%;
 }
 
 a {
-	overflow-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.og-card-container {
+  @apply flex flex-col md:flex-row border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 ease-in-out;
+}
+
+.og-card-container a {
+  @apply flex flex-col-reverse md:flex-row justify-between w-full no-underline text-current;
+}
+
+.og-card-info {
+  @apply flex flex-col justify-between p-4 md:w-2/3 bg-white;
+}
+
+.og-card-title {
+  @apply text-lg font-semibold text-gray-900 truncate;
+}
+
+.og-card-description {
+  @apply mt-2 text-sm text-gray-600 line-clamp-3; /* For multiline truncation */
+}
+
+.og-card-url-container {
+  @apply flex items-center mt-3 text-sm text-gray-500;
+}
+
+.og-card-favicon {
+  @apply m-0 mr-2 w-4 h-4;
+}
+
+.og-card-url {
+  @apply truncate;
+}
+
+.og-card-image-container {
+  @apply md:w-1/4 flex-shrink-0;
+}
+
+.og-card-image {
+  @apply m-0 w-full h-40 md:h-full object-cover;
 }

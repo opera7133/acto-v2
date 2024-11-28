@@ -8,7 +8,9 @@ export async function getStaticPaths() {
   let posts = (await getCollection("blog")).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
-  posts = posts.filter((post) => post.data.draft !== true);
+  posts = posts.filter(
+    (post) => post.data.draft !== true && post.data.category !== "Zakki"
+  );
   const yearMonth = posts.map((post) => ({
     year: format(post.data.pubDate, "yyyy"),
   }));
@@ -20,9 +22,7 @@ export async function getStaticPaths() {
 const { year } = Astro.params;
 const { posts } = Astro.props;
 const filteredPosts = posts.filter((post) => {
-  return (
-    format(post.data.pubDate, "yyyy") === year
-  );
+  return format(post.data.pubDate, "yyyy") === year;
 });
 ---
 

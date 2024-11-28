@@ -25,24 +25,39 @@ if (!images[heroImage])
   );
 ---
 
-<div class="group">
-  <div class="object-cover overflow-hidden">
-    <Image
-      src={images[heroImage]()}
-      alt={title}
-      class="object-cover duration-200 group-hover:scale-110"
-    />
-  </div>
-  <div class="flex justify-between text-neutral-500 text-xs my-2">
-    <time class="flex items-center"
-      ><Icon name="mdi:calendar" class="mr-0.5" />
-      {format(pubDate, "yyyy/MM/dd")}</time
-    >
-    <span class="flex items-center"
-      ><Icon name="mdi:folder" class="mr-0.5" />
-      {category || "Uncategorized"}</span
-    >
-  </div>
-  <h2 class="font-semibold">{title}</h2>
-  <p class="my-2 text-xs text-neutral-500">{shortDescription}</p>
-</div>
+<>
+  {
+    category !== "Zakki" ? (
+      <div class="group">
+        <div class="object-cover overflow-hidden">
+          <Image
+            src={images[heroImage]()}
+            alt={title}
+            class="object-cover duration-200 group-hover:scale-110"
+          />
+        </div>
+
+        <div class="flex justify-between text-neutral-500 text-xs my-2">
+          <time class="flex items-center">
+            <Icon name="mdi:calendar" class="mr-0.5" />
+            {format(pubDate, "yyyy/MM/dd")}
+          </time>
+          <span class="flex items-center">
+            <Icon name="mdi:folder" class="mr-0.5" />
+            {category || "Uncategorized"}
+          </span>
+        </div>
+        <h2 class="font-semibold">{title}</h2>
+        <p class="my-2 text-xs text-neutral-500">{shortDescription}</p>
+      </div>
+    ) : (
+      <div class="group">
+        <div class="flex gap-2 my-2">
+          <time>{format(pubDate, "yyyy/MM/dd")}</time>
+          <h2 class="font-semibold">{title}</h2>
+        </div>
+        <p class="my-2 text-xs text-neutral-500">{shortDescription}</p>
+      </div>
+    )
+  }
+</>
