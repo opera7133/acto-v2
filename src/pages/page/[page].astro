@@ -7,8 +7,11 @@ import { format } from "date-fns";
 import type { GetStaticPathsOptions } from "astro";
 const posts = await getCollection("blog");
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const posts = (await getCollection("blog")).sort(
+  let posts = (await getCollection("blog")).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  posts = posts.filter(
+    (post) => post.data.draft !== true && post.data.category !== "Zakki"
   );
   return paginate(posts, { pageSize: 10 });
 }
@@ -45,7 +48,7 @@ const { page } = Astro.props;
         )
       }
       {
-        Array.from({ length: pages }, (_, i) => (
+        Array.from({ length: pages - 1 }, (_, i) => (
           <a
             href={`/${i === 0 ? "" : `page/${i + 1}/`}`}
             class={
@@ -58,7 +61,7 @@ const { page } = Astro.props;
         ))
       }
       {
-        page.data.length >= 10 ? (
+        page.data.length > 10 ? (
           <a
             href={`/page/${page.currentPage + 1}`}
             class="relative mx-2 p-3 border-black border-anim"
