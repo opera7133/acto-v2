@@ -2,7 +2,7 @@
 title: 'ChromeXtを導入して、AdShield広告をブロックする'
 category: 'Web'
 pubDate: '2025-01-14'
-heroImage: '/src/assets/images/placeholder.jpg'
+heroImage: '/src/assets/images/placeholder.png'
 draft: true
 ---
 
