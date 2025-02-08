@@ -33,7 +33,7 @@ const filteredPosts = posts.filter((post) => {
 <BaseLayout title={`${year}/${month} Archives`}>
   <div class="lg:col-span-3 lg:mr-8">
     <h2 class="text-2xl font-bold mb-4">アーカイブ: {year}年{month}月</h2>
-    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6" data-pagefind-ignore>
       {
         filteredPosts.map((post) => (
           <li>

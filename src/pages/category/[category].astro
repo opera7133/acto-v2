@@ -35,7 +35,7 @@ if (category === "Uncategorized") {
     }
     {
       category === "Zakki" ? (
-        <ul class="flex flex-col gap-2">
+        <ul class="flex flex-col gap-2" data-pagefind-ignore>
           {filteredPosts.map((post) => (
             <li class="border-b">
               <a
@@ -47,7 +47,7 @@ if (category === "Uncategorized") {
           ))}
         </ul>
       ) : (
-        <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-6" data-pagefind-ignore>
           {filteredPosts.map((post) => (
             <li>
               <a
