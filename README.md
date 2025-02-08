@@ -1,6 +1,14 @@
 # Acto V2
 
-予定
+my blog
+
+## Features
+
+- Search
+- Category
+- Archives (yyyy, yyyy/mm)
+- Pagination
+- Syntax Highlight
 
 ## License
 

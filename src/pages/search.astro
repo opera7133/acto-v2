@@ -1,0 +1,15 @@
+---
+import PagefindSearch from "astro-pagefind/components/Search";
+import Layout from "../layouts/BaseLayout.astro";
+---
+
+<Layout>
+  <div class="lg:col-span-3 lg:mr-8">
+    <h1 class="text-3xl my-6 font-semibold">記事を検索</h1>
+    <PagefindSearch
+      id="search"
+      className="pagefind-ui"
+      uiOptions={{ showImages: false }}
+    />
+  </div>
+</Layout>

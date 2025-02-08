@@ -59,3 +59,8 @@ a {
 .og-card-image {
   @apply m-0 w-full h-40 md:h-full object-cover;
 }
+
+code {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
