@@ -1,9 +1,8 @@
 ---
 title: 'ChromeXtを導入して、AdShield広告をブロックする'
-category: 'Web'
+category: 'Zakki'
 pubDate: '2025-01-14'
-heroImage: '/src/assets/images/placeholder.png'
-draft: true
+draft: false
 ---
 
 最近「小説家になろう」を読んでいたときにDNS広告ブロッカーを使っていても消えない広告があり、ソースを調べてみました。

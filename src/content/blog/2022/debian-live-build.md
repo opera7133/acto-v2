@@ -147,6 +147,6 @@ Live BuildでISOをビルドする方法などを詳細に書いてある記事�
 
 https://live-team.pages.debian.net/live-manual/html/live-manual/toc.ja.html
 
-`http://yakushi.shinshu-u.ac.jp/debian-live/osc2013fukuoka-debian-live.pdf`
+http://yakushi.shinshu-u.ac.jp/debian-live/osc2013fukuoka-debian-live.pdf
 
-`https://qiita.com/homelith/items/f30a1fbac89dc977c1ff`
+https://qiita.com/homelith/items/f30a1fbac89dc977c1ff

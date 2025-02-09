@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 scripts/*.png
 scripts/*.jpg
+
+public/rehype-og-card
+public/remark-link-card

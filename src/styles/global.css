@@ -20,44 +20,40 @@ a {
   overflow-wrap: break-word;
 }
 
-.og-card-container {
-  @apply flex flex-col md:flex-row border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 ease-in-out;
+.rlc-container {
+  @apply flex flex-col-reverse md:flex-row justify-between border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 ease-in-out no-underline text-current my-4;
 }
 
-.og-card-container a {
-  @apply flex flex-col-reverse md:flex-row justify-between w-full no-underline text-current;
+.rlc-info {
+  @apply flex flex-col justify-between p-4 min-w-0 bg-white;
 }
 
-.og-card-info {
-  @apply flex flex-col justify-between p-4 md:w-2/3 bg-white;
-}
-
-.og-card-title {
+.rlc-title {
   @apply text-lg font-semibold text-gray-900 truncate;
 }
 
-.og-card-description {
-  @apply mt-2 text-sm text-gray-600 line-clamp-3; /* For multiline truncation */
+.rlc-description {
+  @apply mt-2 text-sm text-gray-600 line-clamp-3;
 }
 
-.og-card-url-container {
+.rlc-url-container {
   @apply flex items-center mt-3 text-sm text-gray-500;
 }
 
-.og-card-favicon {
+.rlc-favicon {
   @apply m-0 mr-2 w-4 h-4;
 }
 
-.og-card-url {
+.rlc-url {
   @apply truncate;
 }
 
-.og-card-image-container {
-  @apply md:w-1/4 flex-shrink-0;
+.rlc-image-container {
+  @apply flex-shrink-0 col-[2];
 }
 
-.og-card-image {
-  @apply m-0 w-full h-40 md:h-full object-cover;
+.rlc-image {
+  @apply m-0 w-full h-40 md:h-full max-h-40 object-cover;
 }
 
 code {

@@ -1,14 +1,18 @@
 # Acto V2
 
-my blog
+ブログ
 
-## Features
+## 機能
 
-- Search
-- Category
-- Archives (yyyy, yyyy/mm)
-- Pagination
-- Syntax Highlight
+- 検索（pagefind.js）
+- カテゴリー
+- アーカイブ (yyyy, yyyy/mm)
+- ページネーション
+- シンタックスハイライト
+
+## おまけ
+
+- `Zakki`カテゴリー：雑記帳のみに表示。サムネイルなし。
 
 ## License
 

@@ -26,11 +26,15 @@ const { title, description, image, noindex } = Astro.props;
       id="nav-links"
       style="display: none"
       class="fixed top-0 bottom-0 left-0 right-0 bg-neutral-800 text-white z-50 text-3xl md:hidden"
+      data-pagefind-ignore
     >
       <div class="flex flex-col justify-center items-center gap-6 h-full">
         <a href="/" class="">Home</a>
         <a href="/about" class="">About</a>
         <a href="/contact" class="">Contact</a>
+        <a href="/search" class="">
+          <Icon name="mdi:magnify" class="text-white" />
+        </a>
       </div>
       <div
         class="absolute top-5 right-8 cursor-pointer"
@@ -40,7 +44,7 @@ const { title, description, image, noindex } = Astro.props;
       </div>
     </div>
     <Header />
-    <div class="w-full bg-cyan-600 text-white">
+    <div class="w-full bg-cyan-600 text-white" data-pagefind-ignore>
       <div class="max-w-6xl mx-auto px-4 py-2 text-sm">
         <a href="/category/Zakki">雑記帳 →</a>
       </div>

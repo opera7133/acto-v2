@@ -15,7 +15,7 @@ const pages = Math.ceil(posts.length / 10);
 ---
 
 <BaseLayout>
-  <div class="lg:col-span-3 lg:mr-8">
+  <div class="lg:col-span-3 lg:mr-8" data-pagefind-ignore>
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {
         posts.slice(0, 10).map((post) => (

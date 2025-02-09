@@ -20,8 +20,8 @@ const { page } = Astro.props;
 ---
 
 <BaseLayout>
-  <div class="lg:col-span-3 lg:mr-8">
-    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6" data-pagefind-ignore>
+  <div class="lg:col-span-3 lg:mr-8" data-pagefind-ignore>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {
         page.data.map((post) => (
           <li>
