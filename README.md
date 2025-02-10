@@ -13,6 +13,7 @@
 ## おまけ
 
 - `Zakki`カテゴリー：雑記帳のみに表示。サムネイルなし。
+- リンクカード：`remark-link-card`を使用。`cache`を有効化するとファイル名でエラーが発生する。`remark-link-card-plus`ではビルドが完了しない。`rehype-og-card`ではqiitaやamazonなどの取得時正常に動作しない。
 
 ## License
 

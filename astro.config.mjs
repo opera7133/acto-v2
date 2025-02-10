@@ -17,7 +17,7 @@ export default defineConfig({
     format: "file",
   },
   markdown: {
-    remarkPlugins: [remarkAlert, [rlc, { cache: true, shortenUrl: true }]],
+    remarkPlugins: [remarkAlert, [rlc, { cache: false, shortenUrl: true }]],
     rehypePlugins: [rehypeRaw, [rehypeExternalLinks, { target: "_blank" }]],
     shikiConfig: {
       theme: "monokai",
