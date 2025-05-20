@@ -8,7 +8,13 @@ import Layout from "../layouts/BlogPost.astro";
   category="Blog"
   type="page"
 >
-  <form class="my-4 flex flex-col gap-2" id="form" data-pagefind-ignore>
+  <form
+    class="my-4 flex flex-col gap-2"
+    id="form"
+    data-pagefind-ignore
+    action="https://formspree.io/f/xzbkyvgk"
+    method="POST"
+  >
     <div class="flex flex-col">
       <label for="name">お名前</label>
       <input
@@ -72,72 +78,3 @@ import Layout from "../layouts/BlogPost.astro";
     </button>
   </form>
 </Layout>
-
-<script
-  is:inline
-  src="https://www.google.com/recaptcha/api.js?render=6LdjmqAUAAAAAAbumjj4murG5aZzikJ9qr2RShgU&hl=ja"
-></script>
-<script is:inline>
-  const form = document.getElementById("form");
-  form?.addEventListener("submit", submitFormData);
-
-  function submitFormData(event) {
-    event.preventDefault();
-    grecaptcha.ready(() => {
-      grecaptcha
-        .execute("6LdjmqAUAAAAAAbumjj4murG5aZzikJ9qr2RShgU", {
-          action: "submit",
-        })
-        .then(async (token) => {
-          const target = event.target;
-
-          const data = {
-            name: target.name.value,
-            email: target.email.value,
-            type: target.type.value,
-            subject: target.subject.value,
-            message: target.message.value,
-            googleReCaptchaToken: token,
-          };
-
-          if (
-            !data.name ||
-            !data.email ||
-            !data.type ||
-            !data.subject ||
-            !data.message
-          ) {
-            alert("全ての項目を入力してください");
-            return;
-          }
-
-          const formData = new FormData();
-          Object.entries(data).forEach(([key, value]) => {
-            formData.append(key, value);
-          });
-
-          try {
-            const res = await sendRequest(formData);
-            if (res.ok) {
-              location.href = "/success";
-            } else {
-              alert("送信に失敗しました");
-            }
-          } catch (error) {
-            console.error(error);
-            alert("送信に失敗しました");
-          }
-        });
-    });
-  }
-
-  async function sendRequest(formData) {
-    return await fetch("https://acto.form.newt.so/v1/mcF7hAZsi", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-      },
-    });
-  }
-</script>
