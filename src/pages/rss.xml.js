@@ -14,7 +14,7 @@ export async function GET(context) {
     items: posts.map((post) => ({
       ...post.data,
       description: post.body.slice(0, 80).concat("...").replaceAll("#", ""),
-      link: `${format(post.data.pubDate, "/yyyy/MM/")}${post.slug}`,
+      link: `${format(post.data.pubDate, "/yyyy/MM/")}${post.slug.slice(5)}`,
     })),
   });
 }
