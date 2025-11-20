@@ -19,7 +19,7 @@ https://github.com/List-KR/tinyShield
 
 この`html-load.com`などのドメインで広告を出しているAdShieldの広告をブロックするためのスクリプトが**tinyShield**です。
 
-tinyShieldはユーザースクリプトで、デスクトップ向けブラウザやFirefox Androidなどの拡張機能が追加できるブラウザであれば、TampermonkeyやViolentmonkeyを追加することで利用できます。
+tinyShieldはユーザースクリプトで、デスクトップ向けブラウザやFirefox Androidなどの拡張機能が追加できるブラウザであれば、TampermonkeyやViolentmonkeyを追加することで利用できます。（iOS, iPadOSの場合は[Safari向けのUserscripts拡張](https://apps.apple.com/jp/app/userscripts/id1463298887)があるので、そこから使えると思います。）
 
 ## ChromeXt
 
