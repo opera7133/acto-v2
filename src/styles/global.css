@@ -1,3 +1,11 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: 'Noto Sans JP', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 .border-anim:before {
   content: "";
   position: absolute;
@@ -21,7 +29,7 @@ a {
 }
 
 .rlc-container {
-  @apply flex flex-col-reverse md:flex-row justify-between border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 ease-in-out no-underline text-current my-4;
+  @apply flex flex-col-reverse md:flex-row justify-between border rounded-lg overflow-hidden shadow-xs hover:shadow-sm transition-shadow duration-200 ease-in-out no-underline text-current my-4 border-gray-200;
 }
 
 .rlc-info {
