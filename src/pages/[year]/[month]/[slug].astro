@@ -4,52 +4,52 @@ import BlogPost from "../../../layouts/BlogPost.astro";
 import { format } from "date-fns";
 
 export async function getStaticPaths() {
-  let posts = await getCollection("blog");
+	let posts = await getCollection("blog");
 
-  // 投稿を日付で降順にソートし、ドラフトを除外
-  posts = posts
-    .filter((post) => post.data.draft !== true)
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+	// 投稿を日付で降順にソートし、ドラフトを除外
+	posts = posts
+		.filter((post) => post.data.draft !== true)
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-  return posts.map((post, i) => {
-    // 現在の投稿のカテゴリ
-    const currentCategory = post.data.category || "General";
+	return posts.map((post, _i) => {
+		// 現在の投稿のカテゴリ
+		const currentCategory = post.data.category || "General";
 
-    // フィルタリング: 現在のカテゴリに基づいて prevPost と nextPost を決定
-    const filteredPosts =
-      currentCategory === "Zakki"
-        ? posts.filter((p) => p.data.category === "Zakki")
-        : posts.filter((p) => p.data.category !== "Zakki");
+		// フィルタリング: 現在のカテゴリに基づいて prevPost と nextPost を決定
+		const filteredPosts =
+			currentCategory === "Zakki"
+				? posts.filter((p) => p.data.category === "Zakki")
+				: posts.filter((p) => p.data.category !== "Zakki");
 
-    // 現在の投稿のインデックスを取得
-    const currentIndex = filteredPosts.findIndex((p) => p.slug === post.slug);
+		// 現在の投稿のインデックスを取得
+		const currentIndex = filteredPosts.findIndex((p) => p.slug === post.slug);
 
-    // prevPost と nextPost を取得
-    const prevPost = currentIndex > 0 ? filteredPosts[currentIndex - 1] : null;
-    const nextPost =
-      currentIndex < filteredPosts.length - 1
-        ? filteredPosts[currentIndex + 1]
-        : null;
+		// prevPost と nextPost を取得
+		const prevPost = currentIndex > 0 ? filteredPosts[currentIndex - 1] : null;
+		const nextPost =
+			currentIndex < filteredPosts.length - 1
+				? filteredPosts[currentIndex + 1]
+				: null;
 
-    return {
-      params: {
-        slug: post.slug.slice(5),
-        year: format(post.data.pubDate, "yyyy"),
-        month: format(post.data.pubDate, "MM"),
-      },
-      props: {
-        post,
-        prevPost,
-        nextPost,
-      },
-    };
-  });
+		return {
+			params: {
+				slug: post.slug.slice(5),
+				year: format(post.data.pubDate, "yyyy"),
+				month: format(post.data.pubDate, "MM"),
+			},
+			props: {
+				post,
+				prevPost,
+				nextPost,
+			},
+		};
+	});
 }
 
 type Props = {
-  post: CollectionEntry<"blog">;
-  prevPost: CollectionEntry<"blog"> | null;
-  nextPost: CollectionEntry<"blog"> | null;
+	post: CollectionEntry<"blog">;
+	prevPost: CollectionEntry<"blog"> | null;
+	nextPost: CollectionEntry<"blog"> | null;
 };
 
 const { post, prevPost, nextPost } = Astro.props;
@@ -57,10 +57,10 @@ const { Content } = await post.render();
 ---
 
 <BlogPost
-  {...post.data}
-  body={post.body}
-  prevPost={prevPost}
-  nextPost={nextPost}
+	{...post.data}
+	body={post.body}
+	prevPost={prevPost}
+	nextPost={nextPost}
 >
-  <Content />
+	<Content />
 </BlogPost>

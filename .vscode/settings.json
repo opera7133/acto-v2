@@ -1,0 +1,44 @@
+{
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "blog",
+      "path": "[[workspace]]/src/content/blog",
+      "contentTypes": [
+        "blog"
+      ]
+    },
+    {
+      "title": "2026",
+      "path": "[[workspace]]/src/content/blog/2026"
+    },
+    {
+      "title": "2025",
+      "path": "[[workspace]]/src/content/blog/2025"
+    },
+    {
+      "title": "2024",
+      "path": "[[workspace]]/src/content/blog/2024"
+    },
+    {
+      "title": "2023",
+      "path": "[[workspace]]/src/content/blog/2023"
+    },
+    {
+      "title": "2022",
+      "path": "[[workspace]]/src/content/blog/2022"
+    },
+    {
+      "title": "2021",
+      "path": "[[workspace]]/src/content/blog/2021"
+    },
+    {
+      "title": "2020",
+      "path": "[[workspace]]/src/content/blog/2020"
+    },
+    {
+      "title": "2019",
+      "path": "[[workspace]]/src/content/blog/2019"
+    }
+  ],
+  "frontMatter.git.enabled": false
+}

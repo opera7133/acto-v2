@@ -5,60 +5,60 @@ import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
 export async function getStaticPaths() {
-  let posts = (await getCollection("blog")).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  );
-  posts = posts.filter((post) => post.data.draft !== true);
-  const categories = posts.map((post) => post.data.category || "Uncategorized");
-  return categories
-    .filter((category, index) => categories.indexOf(category) === index)
-    .map((category) => ({ params: { category }, props: { posts } }));
+	let posts = (await getCollection("blog")).sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
+	posts = posts.filter((post) => post.data.draft !== true);
+	const categories = posts.map((post) => post.data.category || "Uncategorized");
+	return categories
+		.filter((category, index) => categories.indexOf(category) === index)
+		.map((category) => ({ params: { category }, props: { posts } }));
 }
 const { category } = Astro.params;
 const { posts } = Astro.props;
 let filteredPosts;
 if (category === "Uncategorized") {
-  filteredPosts = posts.filter((post) => !post.data.category);
+	filteredPosts = posts.filter((post) => !post.data.category);
 } else {
-  filteredPosts = posts.filter((post) => post.data.category === category);
+	filteredPosts = posts.filter((post) => post.data.category === category);
 }
 ---
 
 <BaseLayout title={category === "Zakki" ? "雑記帳" : `${category} Archives`}>
-  <div class="lg:col-span-3 lg:mr-8">
-    {
-      category === "Zakki" ? (
-        <h2 class="text-2xl font-bold mb-4">雑記帳</h2>
-      ) : (
-        <h2 class="text-2xl font-bold mb-4">カテゴリー: {category}</h2>
-      )
-    }
-    {
-      category === "Zakki" ? (
-        <ul class="flex flex-col gap-2" data-pagefind-ignore>
-          {filteredPosts.map((post) => (
-            <li class="border-b">
-              <a
-                href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
-              >
-                <ArticleCard {...post.data} body={post.body} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <ul class="grid grid-cols-1 md:grid-cols-2 gap-6" data-pagefind-ignore>
-          {filteredPosts.map((post) => (
-            <li>
-              <a
-                href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
-              >
-                <ArticleCard {...post.data} body={post.body} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  </div>
+	<div class="lg:col-span-3 lg:mr-8">
+		{
+			category === "Zakki" ? (
+				<h2 class="text-2xl font-bold mb-4">雑記帳</h2>
+			) : (
+				<h2 class="text-2xl font-bold mb-4">カテゴリー: {category}</h2>
+			)
+		}
+		{
+			category === "Zakki" ? (
+				<ul class="flex flex-col gap-2" data-pagefind-ignore>
+					{filteredPosts.map((post) => (
+						<li class="border-b border-gray-200">
+							<a
+								href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
+							>
+								<ArticleCard {...post.data} body={post.body} />
+							</a>
+						</li>
+					))}
+				</ul>
+			) : (
+				<ul class="grid grid-cols-1 md:grid-cols-2 gap-6" data-pagefind-ignore>
+					{filteredPosts.map((post) => (
+						<li>
+							<a
+								href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
+							>
+								<ArticleCard {...post.data} body={post.body} />
+							</a>
+						</li>
+					))}
+				</ul>
+			)
+		}
+	</div>
 </BaseLayout>

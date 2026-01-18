@@ -3,118 +3,119 @@ import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 let posts = (await getCollection("blog")).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
 posts = posts.filter(
-  (post) => post.data.draft !== true && post.data.category !== "Zakki"
+	(post) => post.data.draft !== true && post.data.category !== "Zakki",
 );
 const archives: {
-  path: string;
-  archive: string;
+	path: string;
+	archive: string;
 }[] = [];
 let categories: string[] = [];
 for (const post of posts) {
-  const archivePath = format(post.data.pubDate, "yyyy/MM/");
-  const archive = format(post.data.pubDate, "yyyy年MM月");
-  if (!archives.some((a) => a.path === archivePath)) {
-    archives.push({ path: archivePath, archive });
-  }
-  const category = post.data.category;
-  if (category && !categories.includes(category)) {
-    categories.push(category);
-  } else if (!category && !categories.includes("Uncategorized")) {
-    categories.push("Uncategorized");
-  }
+	const archivePath = format(post.data.pubDate, "yyyy/MM/");
+	const archive = format(post.data.pubDate, "yyyy年MM月");
+	if (!archives.some((a) => a.path === archivePath)) {
+		archives.push({ path: archivePath, archive });
+	}
+	const category = post.data.category;
+	if (category && !categories.includes(category)) {
+		categories.push(category);
+	} else if (!category && !categories.includes("Uncategorized")) {
+		categories.push("Uncategorized");
+	}
 }
 categories.sort();
 archives.reverse();
 ---
 
 <div class="mt-8 md:m-0" data-pagefind-ignore>
-  <div class="flex flex-col items-center px-4">
-    <img src="/wamo.jpg" class="w-24 h-24 rounded-full" alt="profile icon" />
-    <p class="text-lg font-bold my-2">wamo</p>
-    <div class="flex gap-2 my-2">
-      <a
-        href="https://wmsci.com"
-        target="_blank"
-        class="bg-cyan-600 hover:bg-cyan-500 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
-      >
-        <Icon name="mdi:globe" class="text-white" size={22} />
-      </a>
-      <a
-        href="https://x.com/freez_c"
-        target="_blank"
-        class="bg-black hover:bg-neutral-800 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
-      >
-        <Icon name="ri:twitter-x-fill" class="text-white" size={22} />
-      </a>
-      <a
-        href="https://www.youtube.com/@wamo"
-        target="_blank"
-        class="bg-red-600 hover:bg-red-500 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
-      >
-        <Icon name="mdi:youtube" class="text-white" size={24} />
-      </a>
-      <a
-        href="https://github.com/opera7133"
-        target="_blank"
-        class="bg-black hover:bg-neutral-800 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
-      >
-        <Icon name="mdi:github" class="text-white" size={24} />
-      </a>
-    </div>
-    <p class="my-2">シンプルなものが好きです。</p>
-  </div>
-  <h2 class="text-lg font-bold border-black pb-1 border-b-2 mt-8 mb-4">
-    アーカイブ
-  </h2>
-  <select class="w-full p-2 rounded-md border border-gray-300" id="archive">
-    <option value="">月を選択</option>
-    {
-      archives.map((archive) => (
-        <option value={archive.path}>{archive.archive}</option>
-      ))
-    }
-  </select>
-  <h2 class="text-lg font-bold border-black pb-1 border-b-2 mt-8 mb-4">
-    カテゴリー
-  </h2>
-  <div class="flex flex-col gap-2">
-    {
-      categories.map((category, i) => (
-        <>
-          <a
-            href={`/category/${category}`}
-            class="flex items-center duration-200 py-1 text-sm"
-          >
-            <Icon name="mdi:keyboard-arrow-right" class="mr-0.5" size={22} />{" "}
-            {category}
-          </a>
-          {categories.length - 1 !== i && <hr />}
-        </>
-      ))
-    }
-  </div>
-  <h2 class="text-lg font-bold border-black pb-1 border-b-2 mt-8 mb-4">寄付</h2>
-  <script
-    type="text/javascript"
-    src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
-  <script type="text/javascript">
-    kofiwidget2.init("Support Me on Ko-fi", "#29abe0", "G2G521C62");
-    kofiwidget2.draw();
-  </script>
-  <img src="/busy.png" class="my-6" alt="時間のないサイト運営者リング" />
+	<div class="flex flex-col items-center px-4">
+		<img src="/wamo.jpg" class="w-24 h-24 rounded-full" alt="profile icon" />
+		<p class="text-lg font-bold my-2">wamo</p>
+		<div class="flex gap-2 my-2">
+			<a
+				href="https://wmsci.com"
+				target="_blank"
+				class="bg-cyan-600 hover:bg-cyan-500 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+			>
+				<Icon name="mdi:globe" class="text-white" size={22} />
+			</a>
+			<a
+				href="https://x.com/freez_c"
+				target="_blank"
+				class="bg-black hover:bg-neutral-800 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+			>
+				<Icon name="ri:twitter-x-fill" class="text-white" size={22} />
+			</a>
+			<a
+				href="https://www.youtube.com/@wamo"
+				target="_blank"
+				class="bg-red-600 hover:bg-red-500 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+			>
+				<Icon name="mdi:youtube" class="text-white" size={24} />
+			</a>
+			<a
+				href="https://github.com/opera7133"
+				target="_blank"
+				class="bg-black hover:bg-neutral-800 duration-200 rounded-full w-10 h-10 flex items-center justify-center"
+			>
+				<Icon name="mdi:github" class="text-white" size={24} />
+			</a>
+		</div>
+		<p class="my-2">シンプルなものが好きです。</p>
+	</div>
+	<h2 class="text-lg font-bold border-black pb-1 border-b-2 mt-8 mb-4">
+		アーカイブ
+	</h2>
+	<select class="w-full p-2 rounded-md border border-gray-300" id="archive">
+		<option value="">月を選択</option>
+		{
+			archives.map((archive) => (
+				<option value={archive.path}>{archive.archive}</option>
+			))
+		}
+	</select>
+	<h2 class="text-lg font-bold border-black pb-1 border-b-2 mt-8 mb-4">
+		カテゴリー
+	</h2>
+	<div class="flex flex-col gap-2">
+		{
+			categories.map((category, i) => (
+				<>
+					<a
+						href={`/category/${category}`}
+						class="flex items-center duration-200 py-1 text-sm"
+					>
+						<Icon name="mdi:keyboard-arrow-right" class="mr-0.5" size={22} />{" "}
+						{category}
+					</a>
+					{categories.length - 1 !== i && <hr class="border-gray-200" />}
+				</>
+			))
+		}
+	</div>
+	<h2 class="text-lg font-bold border-black pb-1 border-b-2 mt-8 mb-4">寄付</h2>
+	<script
+		is:inline
+		type="text/javascript"
+		src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
+	<script type="text/javascript" is:inline>
+		kofiwidget2.init("Support Me on Ko-fi", "#29abe0", "G2G521C62");
+		kofiwidget2.draw();
+	</script>
+	<img src="/busy.png" class="my-6" alt="時間のないサイト運営者リング" />
 </div>
 
 <script>
-  const archiveSelector = document.getElementById(
-    "archive"
-  ) as HTMLInputElement;
-  archiveSelector?.addEventListener("change", () => {
-    const selectedArchive = archiveSelector.value;
-    if (selectedArchive) {
-      location.href = `/${selectedArchive}`;
-    }
-  });
+	const archiveSelector = document.getElementById(
+		"archive",
+	) as HTMLInputElement;
+	archiveSelector?.addEventListener("change", () => {
+		const selectedArchive = archiveSelector.value;
+		if (selectedArchive) {
+			location.href = `/${selectedArchive}`;
+		}
+	});
 </script>

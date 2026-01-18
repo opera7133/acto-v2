@@ -5,10 +5,10 @@ import "../styles/global.css";
 import "remark-github-blockquote-alert/alert.css";
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
-  noindex?: boolean;
+	title: string;
+	description: string;
+	image?: string;
+	noindex?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -46,6 +46,7 @@ const { title, description, image = "/ogp.png", noindex = false } = Astro.props;
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 <meta name="Hatena::Bookmark" content="nocomment" />
 <script
-  defer
-  src="https://analytics.ja1ykl.com/script.js"
-  data-website-id="41d91854-c4aa-4020-88de-7c63eea83672"></script>
+	defer
+	is:inline
+	src="https://analytics.ja1ykl.com/script.js"
+	data-website-id="41d91854-c4aa-4020-88de-7c63eea83672"></script>
