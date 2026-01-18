@@ -16,7 +16,7 @@ heroImage: '/src/assets/images/2023/afdian-donate/afdian.png'
 
 ## アカウント登録
 
-https://afdian.net/reg
+https://afdian.com/reg
 
 ![登録フォーム](../../../assets/images/2023/afdian-donate/image.png)
 

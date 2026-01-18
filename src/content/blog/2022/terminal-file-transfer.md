@@ -2,6 +2,7 @@
 title: 'コマンドラインでファイル転送できる便利な奴'
 category: 'Software'
 pubDate: '2022-02-12'
+updatedDate: '2026-01-19'
 heroImage: '/src/assets/images/2022/terminal-file-transfer/command-file-transfer.jpg'
 ---
 
@@ -15,9 +16,7 @@ heroImage: '/src/assets/images/2022/terminal-file-transfer/command-file-transfer
 
 ちなみに全て無料です。
 
-## transfer.sh
-
-https://transfer.sh
+## ~~transfer.sh~~(閉鎖)
 
 最長2週間、サイズ無制限のファイル共有サービスです。
 
@@ -43,9 +42,7 @@ https://www.station307.com/
 curl -T file.txt -Lv station307.com 2>&1 | grep located-at
 ```
 
-## bashupload
-
-https://bashupload.com/
+## ~~bashupload~~(閉鎖)
 
 最大50GB、最長3日までファイルを保存できるアップローダーです。ダウンロードは一回のみ。
 

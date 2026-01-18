@@ -137,7 +137,7 @@ sudo systemctl restart dovecot
 main.cfにいちいち記述するのも面倒なので、以下のコードをコピペしてください。  
 （example.comは各自で置き換えてください）
 
-https://pastebin.com/eF68wNuh
+~~pastebin.com/eF68wNuh~~
 
 コードを保存したら、sasl_passwdというファイルを作成します。
 
@@ -163,7 +163,7 @@ sudo postmap /etc/postfix/sasl_passwd
 sudo vim /etc/postfix/master.cf
 ```
 
-https://pastebin.com/dFNeTpyE
+~~pastebin.com/dFNeTpyE~~
 
 最後に再起動します。
 
