@@ -25,7 +25,7 @@ registerFont(path.join(__dirname, "fonts/NotoSansJP-Regular.ttf"), {
 program
   .option("-t, --title <title>", "Title of the thumbnail")
   .option("-c, --textColor <textColor>", "Text color")
-  .option("-o, --output <output>", "Output file name")
+  .option("-o, --output <output>", "Output Path")
   .parse(process.argv);
 
 const argv = program.opts();
@@ -181,7 +181,7 @@ async function generateThumbnail(
     : canvas.toBuffer("image/png");
 
   // @ts-ignore
-  fs.writeFileSync(path.join(__dirname, outputFileName), buffer);
+  fs.writeFileSync(outputFileName, buffer);
   console.log(`Thumbnail generated: ${outputFileName}`);
 }
 

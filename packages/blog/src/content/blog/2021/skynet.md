@@ -18,7 +18,7 @@ https://gigazine.net/news/20200310-sia-cloud-storage-2-dollar/
 
 ## 使い方
 
-https://siasky.net
+~~siasky.net~~
 
 試しにこの記事のアイキャッチ画像をアップロードしてみます。  
 今回は公式のポータルを使用。
