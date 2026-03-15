@@ -6,13 +6,32 @@ import {
 	getArticleImages,
 } from "../utils/db.server";
 import type { Route } from "./+types/editor";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { exec } from "child_process";
 import { promisify } from "util";
 import path from "path";
 
 const execAsync = promisify(exec);
+const CMS_EDITOR_SETTINGS_KEY = "cms:editor:settings";
+
+type CmsEditorSettings = {
+	autoSaveEnabled: boolean;
+	autoSaveIntervalSec: number;
+};
+
+function getSaveFormSnapshot(form: HTMLFormElement): string {
+	const formData = new FormData(form);
+	const entries = Array.from(formData.entries())
+		.filter(([key]) => key !== "intent")
+		.map(([key, value]) => [
+			key,
+			typeof value === "string" ? value : value.name,
+		])
+		.sort((a, b) => a[0].localeCompare(b[0]));
+
+	return JSON.stringify(entries);
+}
 
 export async function loader({ params }: Route.LoaderArgs) {
 	const { year, slug } = params;
@@ -56,7 +75,7 @@ export async function action({ request, params }: Route.ActionArgs) {
 			content,
 		);
 
-		return { success: true };
+		return { saved: true };
 	}
 
 	if (intent === "upload") {
@@ -116,6 +135,14 @@ export default function ArticleEditor({
 	const [category, setCategory] = useState(article.category || "Tech");
 	const [images, setImages] = useState(initialImages);
 	const [isDragging, setIsDragging] = useState(false);
+	const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+	const [isSettingsHydrated, setIsSettingsHydrated] = useState(false);
+	const [autoSaveEnabled, setAutoSaveEnabled] = useState(false);
+	const [autoSaveIntervalSec, setAutoSaveIntervalSec] = useState(30);
+	const [lastSavedAt, setLastSavedAt] = useState<Date | null>(null);
+	const [lastSavedSnapshot, setLastSavedSnapshot] = useState("");
+	const saveFormRef = useRef<HTMLFormElement>(null);
+	const lastSubmittedSnapshotRef = useRef<string>("");
 
 	// Update state when loader data changes
 	useEffect(() => {
@@ -125,9 +152,106 @@ export default function ArticleEditor({
 		setImages(initialImages);
 	}, [article, initialImages]);
 
+	// Restore editor settings from localStorage.
+	useEffect(() => {
+		const rawSettings = window.localStorage.getItem(CMS_EDITOR_SETTINGS_KEY);
+		if (rawSettings) {
+			try {
+				const parsed = JSON.parse(rawSettings) as Partial<CmsEditorSettings>;
+				const settingsToApply: Partial<CmsEditorSettings> = {};
+				if (typeof parsed.autoSaveEnabled === "boolean") {
+					settingsToApply.autoSaveEnabled = parsed.autoSaveEnabled;
+				}
+				if (
+					typeof parsed.autoSaveIntervalSec === "number" &&
+					parsed.autoSaveIntervalSec >= 1
+				) {
+					settingsToApply.autoSaveIntervalSec =
+						parsed.autoSaveIntervalSec || 30;
+				}
+				setSettings(settingsToApply);
+				return;
+			} catch {
+				// Ignore broken settings.
+			}
+		}
+		setIsSettingsHydrated(true);
+	}, []);
+
+	const setSettings = (settings: Partial<CmsEditorSettings>) => {
+		if (isSettingsHydrated) return;
+		if (settings.autoSaveEnabled !== undefined) {
+			setAutoSaveEnabled(settings.autoSaveEnabled);
+		}
+		if (settings.autoSaveIntervalSec !== undefined) {
+			setAutoSaveIntervalSec(settings.autoSaveIntervalSec);
+		}
+		window.localStorage.setItem(
+			CMS_EDITOR_SETTINGS_KEY,
+			JSON.stringify({
+				autoSaveEnabled,
+				autoSaveIntervalSec,
+				...settings,
+			}),
+		);
+	};
+
+	useEffect(() => {
+		if (!saveFormRef.current) return;
+		const snapshot = getSaveFormSnapshot(saveFormRef.current);
+		setLastSavedSnapshot(snapshot);
+		lastSubmittedSnapshotRef.current = snapshot;
+		setLastSavedAt(null);
+	}, [article]);
+
 	const isSaving = navigation.formData?.get("intent") === "save";
 	const isGenerating =
 		navigation.formData?.get("intent") === "generate-thumbnail";
+
+	useEffect(() => {
+		if (!actionData || !("saved" in actionData) || !actionData.saved) return;
+
+		const snapshot =
+			lastSubmittedSnapshotRef.current ||
+			(saveFormRef.current ? getSaveFormSnapshot(saveFormRef.current) : "");
+
+		if (snapshot) {
+			setLastSavedSnapshot(snapshot);
+		}
+		setLastSavedAt(new Date());
+	}, [actionData]);
+
+	useEffect(() => {
+		if (!autoSaveEnabled) return;
+
+		const intervalMs = Math.max(1, autoSaveIntervalSec) * 1000;
+		const timerId = window.setInterval(() => {
+			const form = saveFormRef.current;
+			if (!form) return;
+			if (navigation.state !== "idle") return;
+
+			const snapshot = getSaveFormSnapshot(form);
+			if (
+				snapshot === lastSavedSnapshot ||
+				snapshot === lastSubmittedSnapshotRef.current
+			) {
+				return;
+			}
+
+			lastSubmittedSnapshotRef.current = snapshot;
+			submit(form, { method: "post" });
+		}, intervalMs);
+
+		return () => {
+			window.clearInterval(timerId);
+		};
+	}, [
+		autoSaveEnabled,
+		autoSaveIntervalSec,
+		lastSavedSnapshot,
+		navigation.state,
+		submit,
+	]);
 
 	// Handle upload result
 	// Handle upload result
@@ -177,7 +301,17 @@ export default function ArticleEditor({
 						</Link>
 					</div>
 					<h2 className="text-lg font-bold mb-4">記事情報</h2>
-					<Form method="post" className="space-y-4">
+					<Form
+						method="post"
+						className="space-y-4"
+						ref={saveFormRef}
+						onSubmit={() => {
+							if (!saveFormRef.current) return;
+							lastSubmittedSnapshotRef.current = getSaveFormSnapshot(
+								saveFormRef.current,
+							);
+						}}
+					>
 						<input type="hidden" name="intent" value="save" />
 						<input type="hidden" name="content" value={content} />
 						<input type="hidden" name="heroImage" value={heroImage} />
@@ -437,6 +571,76 @@ export default function ArticleEditor({
 					/>
 				</div>
 			</div>
+
+			{isSettingsOpen && (
+				<div className="fixed bottom-24 right-6 w-80 max-w-[calc(100vw-3rem)] bg-white border border-gray-200 rounded-xl shadow-xl p-4 z-50">
+					<h3 className="text-sm font-bold text-gray-900">CMS設定</h3>
+					<div className="mt-3 border border-gray-200 rounded-md p-3 bg-gray-50">
+						<div className="flex items-center justify-between gap-3">
+							<label
+								htmlFor="autosave-enabled"
+								className="text-sm font-medium text-gray-700"
+							>
+								自動保存
+							</label>
+							<input
+								id="autosave-enabled"
+								type="checkbox"
+								checked={autoSaveEnabled}
+								onChange={(e) =>
+									setSettings({ autoSaveEnabled: e.target.checked })
+								}
+								className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+							/>
+						</div>
+						<div className="mt-2">
+							<label
+								htmlFor="autosave-interval"
+								className="block text-xs text-gray-600 mb-1"
+							>
+								保存間隔 (秒)
+							</label>
+							<input
+								id="autosave-interval"
+								type="number"
+								min={1}
+								step={1}
+								value={autoSaveIntervalSec}
+								disabled={!autoSaveEnabled}
+								onChange={(e) => {
+									const parsed = Number.parseInt(e.target.value, 10);
+									if (Number.isNaN(parsed)) {
+										setSettings({ autoSaveIntervalSec: 1 });
+										return;
+									}
+									setSettings({ autoSaveIntervalSec: Math.max(1, parsed) });
+								}}
+								className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm border p-2 disabled:bg-gray-100 disabled:text-gray-400"
+							/>
+						</div>
+						<p className="mt-2 text-xs text-gray-500">
+							{autoSaveEnabled
+								? `${autoSaveIntervalSec}秒ごとに、変更がある場合のみ保存します`
+								: "自動保存はオフです"}
+						</p>
+						{lastSavedAt && (
+							<p className="mt-1 text-xs text-gray-500">
+								最終保存: {lastSavedAt.toLocaleTimeString("ja-JP")}
+							</p>
+						)}
+					</div>
+				</div>
+			)}
+
+			<button
+				type="button"
+				onClick={() => setIsSettingsOpen((prev) => !prev)}
+				className="fixed bottom-8 right-8 z-50 rounded-full bg-gray-900 text-white px-4 py-3 text-sm font-semibold shadow-lg hover:bg-black"
+				aria-label="設定を開く"
+				aria-expanded={isSettingsOpen}
+			>
+				⚙
+			</button>
 		</div>
 	);
 }

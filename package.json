@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "dev": "bun run --parallel dev:blog dev:cms",
     "dev:blog": "bun run --filter blog dev",
     "build:blog": "bun run --filter blog build",
     "preview:blog": "bun run --filter blog preview",

@@ -78,7 +78,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 							name="category"
 							id="category"
 							defaultValue={filters.category}
-							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm border p-2"
+							className="block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm border p-2 pr-8"
 						>
 							<option value="">すべて</option>
 							{options.categories.map((cat) => (
@@ -100,7 +100,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 							name="year"
 							id="year"
 							defaultValue={filters.year}
-							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm border p-2"
+							className="block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm border p-2 pr-8"
 						>
 							<option value="">すべて</option>
 							{options.years.map((year) => (
@@ -122,7 +122,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 							name="status"
 							id="status"
 							defaultValue={filters.status}
-							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm border p-2"
+							className="block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm border p-2 pr-8"
 						>
 							<option value="">すべて</option>
 							<option value="published">公開</option>
