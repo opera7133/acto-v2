@@ -64,6 +64,46 @@ a {
   @apply m-0 w-full h-40 md:h-full max-h-40 object-cover;
 }
 
+.og-card-container {
+  @apply my-4;
+}
+
+.og-card-container > a {
+  @apply flex flex-col-reverse md:flex-row justify-between border rounded-lg overflow-hidden shadow-xs hover:shadow-sm transition-shadow duration-200 ease-in-out no-underline text-current border-gray-200;
+}
+
+.og-card-info {
+  @apply flex flex-col justify-between p-4 min-w-0 bg-white;
+}
+
+.og-card-title {
+  @apply text-lg font-semibold text-gray-900 truncate;
+}
+
+.og-card-description {
+  @apply mt-2 text-sm text-gray-600 line-clamp-3;
+}
+
+.og-card-url-container {
+  @apply flex items-center mt-3 text-sm text-gray-500;
+}
+
+.og-card-favicon {
+  @apply m-0 mr-2 w-4 h-4;
+}
+
+.og-card-url {
+  @apply truncate;
+}
+
+.og-card-image-container {
+  @apply flex-shrink-0 col-[2];
+}
+
+.og-card-image {
+  @apply m-0 w-full h-40 md:h-full max-h-40 object-cover;
+}
+
 code {
   word-wrap: break-word;
   overflow-wrap: break-word;

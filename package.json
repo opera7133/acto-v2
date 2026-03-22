@@ -1,9 +1,9 @@
 {
   "name": "acto-v2",
+  "devDependencies": {
+    "prettier": "^3.8.0"
+  },
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "dev": "bun run --parallel dev:blog dev:cms",
     "dev:blog": "bun run --filter blog dev",
@@ -11,7 +11,10 @@
     "preview:blog": "bun run --filter blog preview",
     "dev:cms": "bun run --filter cms dev"
   },
-  "devDependencies": {
-    "prettier": "^3.8.0"
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "astro-link-card": "^4.0.4"
   }
 }
