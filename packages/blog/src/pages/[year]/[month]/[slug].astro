@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import BlogPost from "../../../layouts/BlogPost.astro";
 import { format } from "date-fns";
 
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 				: posts.filter((p) => p.data.category !== "Zakki");
 
 		// 現在の投稿のインデックスを取得
-		const currentIndex = filteredPosts.findIndex((p) => p.slug === post.slug);
+		const currentIndex = filteredPosts.findIndex((p) => p.id === post.id);
 
 		// prevPost と nextPost を取得
 		const prevPost = currentIndex > 0 ? filteredPosts[currentIndex - 1] : null;
@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 
 		return {
 			params: {
-				slug: post.slug.slice(5),
+				slug: post.id.slice(5),
 				year: format(post.data.pubDate, "yyyy"),
 				month: format(post.data.pubDate, "MM"),
 			},
@@ -53,7 +53,7 @@ type Props = {
 };
 
 const { post, prevPost, nextPost } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 ---
 
 <BlogPost

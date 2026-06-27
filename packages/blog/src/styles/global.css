@@ -3,7 +3,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: 'Noto Sans JP', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: var(--font-noto-sans-jp), var(--font-noto-sans-sc), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .border-anim:before {

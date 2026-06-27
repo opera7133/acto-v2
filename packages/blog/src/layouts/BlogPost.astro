@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { format } from "date-fns";
+import { format, differenceInYears } from "date-fns";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
@@ -41,6 +41,12 @@ if (heroImage && !images[heroImage])
     `"${heroImage}" does not exist in glob: "src/assets/*.{jpeg,jpg,png}"`
   );
 const postUrl = encodeURIComponent(Astro.request.url.replace(".html", ""));
+
+const thresholdYears = 2;
+const targetDate = updatedDate || pubDate;
+const isOldPost =
+  category !== "Zakki" &&
+  differenceInYears(new Date(), targetDate) >= thresholdYears;
 ---
 
 <BaseLayout
@@ -80,6 +86,16 @@ const postUrl = encodeURIComponent(Astro.request.url.replace(".html", ""));
           </a>
         </div>
       </div>
+      {
+        isOldPost && (
+          <div class="flex gap-3 items-center border border-amber-200 bg-amber-50 dark:border-amber-900/30 dark:bg-amber-950/10 text-amber-800 dark:text-amber-300 p-4 rounded-lg my-6 text-sm">
+            <Icon name="mdi:alert-circle-outline" class="w-5 h-5 shrink-0 text-amber-600 dark:text-amber-400" />
+            <p class="m-0 leading-relaxed font-medium not-prose">
+              この記事は最後の更新から{thresholdYears}年以上経過しています。情報が古い可能性がありますのでご注意ください。
+            </p>
+          </div>
+        )
+      }
       <slot />
     </div>
     {type === "blog" && (
@@ -126,18 +142,18 @@ const postUrl = encodeURIComponent(Astro.request.url.replace(".html", ""));
         </div>
         <div class="flex flex-col md:flex-row items-center justify-between gap-3 my-8">
           {prevPost && (
-            <a href={`/${format(prevPost.data.pubDate, "yyyy/MM/")}${prevPost.slug.slice(5)}`} class="text-sm hover:opacity-80 duration-200 md:w-1/2 mr-auto">
+            <a href={`/${format(prevPost.data.pubDate, "yyyy/MM/")}${prevPost.id.slice(5)}`} class="text-sm hover:opacity-80 duration-200 md:w-1/2 mr-auto">
               <div class="flex items-center gap-2">
                 <Icon name="mdi:keyboard-arrow-left" class="text-lg" />
                 {prevPost.data.category !== "Zakki" && <Image src={images[prevPost.data.heroImage || "/src/assets/images/placeholder.png"]()} alt={prevPost.data.title} class="h-16" height={64} />}
-                <p class="text-left flex-grow">{prevPost.data.title}</p>
+                <p class="text-left grow">{prevPost.data.title}</p>
               </div>
             </a>
           )}
           {nextPost && (
-            <a href={`/${format(nextPost.data.pubDate, "yyyy/MM/")}${nextPost.slug.slice(5)}`} class="text-sm hover:opacity-80 duration-200 md:w-1/2 ml-auto">
+            <a href={`/${format(nextPost.data.pubDate, "yyyy/MM/")}${nextPost.id.slice(5)}`} class="text-sm hover:opacity-80 duration-200 md:w-1/2 ml-auto">
               <div class="flex items-center gap-2">
-                <p class="text-right flex-grow">{nextPost.data.title}</p>
+                <p class="text-right grow">{nextPost.data.title}</p>
                 {nextPost.data.category !== "Zakki" && <Image src={images[nextPost.data.heroImage || "/src/assets/images/placeholder.png"]()} alt={nextPost.data.title} class="h-16" height="64" />}
                 <Icon name="mdi:keyboard-arrow-right" class="text-lg" />
               </div>

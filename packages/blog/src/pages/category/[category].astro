@@ -39,7 +39,7 @@ if (category === "Uncategorized") {
 					{filteredPosts.map((post) => (
 						<li class="border-b border-gray-200">
 							<a
-								href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
+								href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.id.slice(5)}/`}
 							>
 								<ArticleCard {...post.data} body={post.body} />
 							</a>
@@ -51,7 +51,7 @@ if (category === "Uncategorized") {
 					{filteredPosts.map((post) => (
 						<li>
 							<a
-								href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.slug.slice(5)}/`}
+								href={`/${format(post.data.pubDate, "yyyy/MM/")}${post.id.slice(5)}/`}
 							>
 								<ArticleCard {...post.data} body={post.body} />
 							</a>

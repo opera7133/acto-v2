@@ -1,7 +1,7 @@
 {
   "name": "acto-v2",
   "devDependencies": {
-    "prettier": "^3.8.0"
+    "prettier": "3.8.5"
   },
   "private": true,
   "scripts": {
@@ -13,8 +13,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {
-    "astro-link-card": "^4.0.4"
-  }
+  ]
 }

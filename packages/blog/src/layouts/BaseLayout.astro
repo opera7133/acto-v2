@@ -5,54 +5,55 @@ import Footer from "../components/Footer.astro";
 import Sidebar from "../components/Sidebar.astro";
 import { Icon } from "astro-icon/components";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import "@fontsource-variable/noto-sans-sc";
-import "@fontsource-variable/noto-sans-jp";
+import { Font } from "astro:assets";
 
 const { title, description, image, noindex } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ja">
-  <head>
-    <BaseHead
-      title={title ? `${title} - ${SITE_TITLE}` : SITE_TITLE}
-      description={description ? description : SITE_DESCRIPTION}
-      image={image || "/images/ogp.png"}
-      noindex={noindex}
-    />
-  </head>
-  <body>
-    <div
-      id="nav-links"
-      style="display: none"
-      class="fixed top-0 bottom-0 left-0 right-0 bg-neutral-800 text-white z-50 text-3xl md:hidden"
-      data-pagefind-ignore
-    >
-      <div class="flex flex-col justify-center items-center gap-6 h-full">
-        <a href="/" class="">Home</a>
-        <a href="/about" class="">About</a>
-        <a href="/contact" class="">Contact</a>
-        <a href="/search" class="">
-          <Icon name="mdi:magnify" class="text-white" />
-        </a>
-      </div>
-      <div
-        class="absolute top-5 right-8 cursor-pointer"
-        onclick="document.getElementById('nav-links').style.display = 'none'"
-      >
-        <Icon name="mdi:close" class="text-white" />
-      </div>
-    </div>
-    <Header />
-    <div class="w-full bg-cyan-600 text-white" data-pagefind-ignore>
-      <div class="max-w-6xl mx-auto px-4 py-2 text-sm">
-        <a href="/category/Zakki">雑記帳 →</a>
-      </div>
-    </div>
-    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 my-8 px-4">
-      <slot />
-      <Sidebar />
-    </main>
-    <Footer />
-  </body>
+	<head>
+		<BaseHead
+			title={title ? `${title} - ${SITE_TITLE}` : SITE_TITLE}
+			description={description ? description : SITE_DESCRIPTION}
+			image={image || "/images/ogp.png"}
+			noindex={noindex}
+		/>
+		<Font cssVariable="--font-noto-sans-sc" />
+		<Font cssVariable="--font-noto-sans-jp" />
+	</head>
+	<body>
+		<div
+			id="nav-links"
+			style="display: none"
+			class="fixed top-0 bottom-0 left-0 right-0 bg-neutral-800 text-white z-50 text-3xl md:hidden"
+			data-pagefind-ignore
+		>
+			<div class="flex flex-col justify-center items-center gap-6 h-full">
+				<a href="/" class="">Home</a>
+				<a href="/about" class="">About</a>
+				<a href="/contact" class="">Contact</a>
+				<a href="/search" class="">
+					<Icon name="mdi:magnify" class="text-white" />
+				</a>
+			</div>
+			<div
+				class="absolute top-5 right-8 cursor-pointer"
+				onclick="document.getElementById('nav-links').style.display = 'none'"
+			>
+				<Icon name="mdi:close" class="text-white" />
+			</div>
+		</div>
+		<Header />
+		<div class="w-full bg-cyan-600 text-white" data-pagefind-ignore>
+			<div class="max-w-6xl mx-auto px-4 py-2 text-sm">
+				<a href="/category/Zakki">雑記帳 →</a>
+			</div>
+		</div>
+		<main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 my-8 px-4">
+			<slot />
+			<Sidebar />
+		</main>
+		<Footer />
+	</body>
 </html>
