@@ -46,6 +46,7 @@ const thresholdYears = 2;
 const targetDate = updatedDate || pubDate;
 const isOldPost =
   category !== "Zakki" &&
+  type !== "page" &&
   differenceInYears(new Date(), targetDate) >= thresholdYears;
 ---
 
