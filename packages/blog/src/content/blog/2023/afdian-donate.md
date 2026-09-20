@@ -3,7 +3,8 @@ title: '日本から爱发电（Afdian）で寄付をする方法'
 category: 'Blog'
 pubDate: '2023-02-04'
 updatedDate: '2023-02-05'
-heroImage: '/src/assets/images/2023/afdian-donate/afdian.png'
+heroImage: '../../../assets/images/2023/afdian-donate/afdian.png'
+draft: false
 ---
 
 一般的な寄付プラットフォームには、日本ならOFUSE、世界ではPatreonやko-fiなどがあります。

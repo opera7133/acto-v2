@@ -2,7 +2,8 @@
 title: 'Debian Live Buildの使い方'
 category: 'Software'
 pubDate: '2022-02-02'
-heroImage: '/src/assets/images/2022/debian-live-build/debian-live-build.jpg'
+heroImage: '../../../assets/images/2022/debian-live-build/debian-live-build.jpg'
+draft: false
 ---
 
 この記事に書かれている内容は不正確であり、記事の通りにやっても正常にビルドできない可能性があります。

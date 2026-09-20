@@ -3,7 +3,8 @@ title: 'ColorfulBoxを契約した'
 category: 'Server'
 pubDate: '2020-11-06'
 updatedDate: '2020-12-23'
-heroImage: '/src/assets/images/2020/colorfulbox/colorful.png'
+heroImage: '../../../assets/images/2020/colorfulbox/colorful.png'
+draft: false
 ---
 
 久しぶりの更新です。  

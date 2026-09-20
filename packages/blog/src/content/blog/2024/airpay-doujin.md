@@ -2,7 +2,7 @@
 title: '同人サークルでAirペイを申し込んだ話'
 category: 'Payment'
 pubDate: '2024-06-23'
-heroImage: '/src/assets/images/placeholder.png'
+heroImage: '../../../assets/images/placeholder.png'
 draft: true
 ---
 

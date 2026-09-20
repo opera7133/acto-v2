@@ -2,6 +2,7 @@
 title: 'BIGLOBE光10ギガを契約するときは、BUFFALOルーターを選ばないほうがいい'
 category: 'Zakki'
 pubDate: '2025-10-07'
+draft: false
 ---
 
 自宅の回線をNURO光G2VからBIGLOBE光10ギガに変更した。

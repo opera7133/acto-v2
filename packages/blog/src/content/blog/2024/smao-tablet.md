@@ -2,7 +2,8 @@
 title: 'smao MD-TAB0801を色々試してみる'
 category: 'Hardware'
 pubDate: '2024-09-17'
-heroImage: '/src/assets/images/2024/smao-tablet/PXL_20240917_064404916.jpg'
+heroImage: '../../../assets/images/2024/smao-tablet/PXL_20240917_064404916.jpg'
+draft: false
 ---
 
 友人からsmaoのMD-TAB0801を1000円程度で購入しました。

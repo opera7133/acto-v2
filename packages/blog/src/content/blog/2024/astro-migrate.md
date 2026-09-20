@@ -2,7 +2,8 @@
 title: 'ブログをAstroに移行しました'
 category: 'Blog'
 pubDate: '2024-05-07'
-heroImage: '/src/assets/images/2024/astro-migrate/astro.png'
+heroImage: '../../../assets/images/2024/astro-migrate/astro.png'
+draft: false
 ---
 
 ブログをWordpressからAstroに移行しました。

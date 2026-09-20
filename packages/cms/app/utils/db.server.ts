@@ -171,11 +171,8 @@ export async function saveImage(
 	const filePath = path.join(targetDir, file.name);
 	await fs.writeFile(filePath, Buffer.from(buffer));
 
-	// Return relative path for markdown
-	// Expected: ../../../assets/images/YYYY/SLUG/filename.png
-	// Or absolute path for heroImage: /src/assets/images/YYYY/SLUG/filename.png
-
-	return `/src/assets/images/${year}/${slug}/${file.name}`;
+	// Articles live three levels below src, so body and hero images share one path.
+	return `../../../assets/images/${year}/${slug}/${file.name}`;
 }
 
 export async function getArticleImages(
@@ -192,5 +189,5 @@ export async function getArticleImages(
 	// Return the public/relative path used in the editor
 	return files
 		.filter((f) => /\.(png|jpe?g|gif|webp|svg)$/i.test(f))
-		.map((file) => `/src/assets/images/${year}/${slug}/${file}`);
+		.map((file) => `../../../assets/images/${year}/${slug}/${file}`);
 }

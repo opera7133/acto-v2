@@ -2,7 +2,8 @@
 title: 'mi band 6を買った'
 category: 'Hardware'
 pubDate: '2021-10-25'
-heroImage: '/src/assets/images/2021/mi-band-6/IMG_2691.png'
+heroImage: '../../../assets/images/2021/mi-band-6/IMG_2691.png'
+draft: false
 ---
 
 9月の頭頃に、AmazonでXiaomiのmi band 6を購入しました。  

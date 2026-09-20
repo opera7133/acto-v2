@@ -3,7 +3,8 @@ title: '文鎮になったAXON7を復活させる'
 category: 'Smartphone'
 pubDate: '2020-05-20'
 updatedDate: '2020-11-06'
-heroImage: '/src/assets/images/2020/brick-axon7/ax7.png'
+heroImage: '../../../assets/images/2020/brick-axon7/ax7.png'
+draft: false
 ---
 
 この前、FireHD 8 (2017)をRoot化し、Lineage OSを入れました。  

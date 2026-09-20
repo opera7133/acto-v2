@@ -2,6 +2,7 @@
 title: "水疱瘡にかかった"
 category: 'Zakki'
 pubDate: '2024-12-26'
+draft: false
 ---
 
 そろそろ年の瀬という時期に水疱瘡になってしまった。

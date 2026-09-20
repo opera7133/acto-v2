@@ -3,7 +3,8 @@ title: 'CHUSEI PVR(Presto! PVR)のプロダクトキーがない時の対処'
 category: 'Software'
 pubDate: '2019-08-08'
 updatedDate: '2020-12-29'
-heroImage: '/src/assets/images/2019/chusei-presto-pvr/pvr.png'
+heroImage: '../../../assets/images/2019/chusei-presto-pvr/pvr.png'
+draft: false
 ---
 
 久しぶりに掃除をしていたら、ワンセグチューナーを見つけました。  

@@ -3,7 +3,8 @@ title: 'ニューステロップ的なスライド'
 category: 'Design'
 pubDate: '2020-12-29'
 updatedDate: '2021-01-01'
-heroImage: '/src/assets/images/2020/news/sokuhou.png'
+heroImage: '../../../assets/images/2020/news/sokuhou.png'
+draft: false
 ---
 
 前に技術科部のDiscordサーバーにあるコラ画像を上げたのですが、自分で作った時に割とよくできた気がしたので、FNN除く大手テレビ局風のテロップをPowerpointで作りました。

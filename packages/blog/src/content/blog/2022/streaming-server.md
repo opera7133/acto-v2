@@ -2,7 +2,8 @@
 title: "ライブ配信サーバーを自前で立てる"
 pubDate: "2022-02-20"
 category: "Software"
-heroImage: '/src/assets/images/2022/streaming-server/srs.png'
+heroImage: '../../../assets/images/2022/streaming-server/srs.png'
+draft: false
 ---
 
 以前ライブ配信システムについて調べていた時に、SRSなるものがあることを知りました。

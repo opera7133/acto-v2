@@ -3,7 +3,8 @@ title: 'コマンドラインでファイル転送できる便利な奴'
 category: 'Software'
 pubDate: '2022-02-12'
 updatedDate: '2026-01-19'
-heroImage: '/src/assets/images/2022/terminal-file-transfer/command-file-transfer.jpg'
+heroImage: '../../../assets/images/2022/terminal-file-transfer/command-file-transfer.jpg'
+draft: false
 ---
 
 コマンドラインからファイルを転送したいと思ったことありませんか？

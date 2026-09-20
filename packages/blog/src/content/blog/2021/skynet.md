@@ -2,7 +2,8 @@
 title: 'Skynetを使って簡単にファイルをアップロードしよう'
 category: 'Web'
 pubDate: '2021-07-24'
-heroImage: '/src/assets/images/2021/skynet/skynet.png'
+heroImage: '../../../assets/images/2021/skynet/skynet.png'
+draft: false
 ---
 
 ## Skynetとは？

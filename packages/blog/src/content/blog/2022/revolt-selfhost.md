@@ -2,7 +2,8 @@
 title: "オープンソースのDiscordクローン「Revolt」を立てる"
 pubDate: "2022-08-07"
 category: "Software"
-heroImage: '/src/assets/images/2022/revolt-selfhost/revolt.png'
+heroImage: '../../../assets/images/2022/revolt-selfhost/revolt.png'
+draft: false
 ---
 
 Mattermostやrocket.chatなどセルフホストできるSlackのようなものは結構ありますが、セルフホストできるDiscordとなるとそう多くはありません（というか見つけられたのがこれ一つ）。

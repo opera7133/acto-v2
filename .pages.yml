@@ -1,0 +1,92 @@
+media:
+  input: packages/blog/src/assets/images
+  output: ../../../assets/images
+  categories: [image]
+  rename: safe
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      create: "content(blog): create {path}"
+      update: "content(blog): update {path}"
+      delete: "content(blog): delete {path}"
+      rename: "content(blog): rename {oldPath} to {newPath}"
+
+content:
+  - name: posts
+    label: 記事
+    type: collection
+    path: packages/blog/src/content/blog
+    format: yaml-frontmatter
+    subfolders: true
+    exclude:
+      - 2021/umidigi-bison-root.mdx
+      - 2022/oculus-quest-2.mdx
+    filename:
+      template: "{primary}.md"
+      field: create
+    operations:
+      create: true
+      rename: false
+      delete: false
+    view:
+      layout: tree
+      primary: title
+      fields: [title, pubDate, category, draft]
+      sort: [pubDate, title]
+      search: [title, body]
+      default:
+        sort: pubDate
+        order: desc
+    fields:
+      - name: title
+        label: タイトル
+        type: string
+        required: true
+      - name: pubDate
+        label: 公開日
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: updatedDate
+        label: 更新日
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: カテゴリー
+        type: select
+        options:
+          values:
+            - Blog
+            - Design
+            - Hardware
+            - Linux
+            - Music
+            - Payment
+            - Server
+            - Smartphone
+            - Software
+            - Web
+            - Zakki
+      - name: draft
+        label: 下書き
+        type: boolean
+        default: true
+      - name: heroImage
+        label: サムネイル画像
+        type: image
+        description: Zakkiカテゴリーでは表示されません。
+      - name: body
+        label: 本文
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          switcher: true
+          categories: [image]
+          rename: safe

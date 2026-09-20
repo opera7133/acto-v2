@@ -2,7 +2,7 @@
 title: '高専生が確定申告をするまで'
 category: 'Payment'
 pubDate: '2025-03-11'
-heroImage: '/src/assets/images/placeholder.png'
+heroImage: '../../../assets/images/placeholder.png'
 draft: true
 ---
 

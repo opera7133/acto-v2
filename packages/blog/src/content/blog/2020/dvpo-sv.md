@@ -3,7 +3,8 @@ title: '【OP25B】DovecotとPostfixを使ったIMAP/POP3/SMTPサーバー【Cen
 category: 'Server'
 pubDate: '2020-03-03'
 updatedDate: '2020-12-29'
-heroImage: '/src/assets/images/2020/dvpo-sv/sm.png'
+heroImage: '../../../assets/images/2020/dvpo-sv/sm.png'
+draft: false
 ---
 
 ### 構成

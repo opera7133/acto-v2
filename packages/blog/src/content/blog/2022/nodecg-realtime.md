@@ -2,7 +2,8 @@
 title: "NodeCGで作るリアルタイム配信レイアウト"
 pubDate: "2022-08-20"
 category: "Software"
-heroImage: '/src/assets/images/2022/nodecg-realtime/nodecg-realtime.png'
+heroImage: '../../../assets/images/2022/nodecg-realtime/nodecg-realtime.png'
+draft: false
 ---
 
 先日配信で情報をリアルタイム更新できるものを探していたところ、RTAinJapanがNodeCGというものを使っていることを知りました。

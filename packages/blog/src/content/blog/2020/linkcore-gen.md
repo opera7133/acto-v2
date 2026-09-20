@@ -3,7 +3,8 @@ title: 'LinkCore風のサイトを作った'
 category: 'Software'
 pubDate: '2020-07-12'
 updatedDate: '2020-11-06'
-heroImage: '/src/assets/images/2020/linkcore-gen/link.png'
+heroImage: '../../../assets/images/2020/linkcore-gen/link.png'
+draft: false
 ---
 
 LinkCoreって知ってますか？あのTuneCore（音楽配信代行）の短縮URLサービスです。  

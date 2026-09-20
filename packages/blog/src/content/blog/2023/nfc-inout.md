@@ -2,7 +2,8 @@
 title: 'FeliCaとPaSoRiで入退室管理'
 category: 'Hardware'
 pubDate: '2023-01-16'
-heroImage: '/src/assets/images/2023/nfc-inout/nfc-inout.png'
+heroImage: '../../../assets/images/2023/nfc-inout/nfc-inout.png'
+draft: false
 ---
 
 私の所属している部活の入退室管理システムが欲しくなりました。

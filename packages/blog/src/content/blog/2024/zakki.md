@@ -2,6 +2,7 @@
 title: '雑記帳コーナー'
 category: 'Zakki'
 pubDate: '2024-11-27'
+draft: false
 ---
 
 サムネイルを設定してグリッドで並べたブログは美しい。

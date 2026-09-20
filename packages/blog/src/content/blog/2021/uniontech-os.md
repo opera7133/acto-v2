@@ -3,7 +3,8 @@ title: 'Uniontech OS（统信UOS）を使ってみる'
 category: 'Linux'
 pubDate: '2021-05-08'
 updatedDate: '2022-01-20'
-heroImage: '/src/assets/images/2021/uniontech-os/Screen-Capture_dde-desktop_20210508151556.png'
+heroImage: '../../../assets/images/2021/uniontech-os/Screen-Capture_dde-desktop_20210508151556.png'
+draft: false
 ---
 
 現在中国で開発されているDebian（Deepin）ベースのOS、UOSというものがあります。  

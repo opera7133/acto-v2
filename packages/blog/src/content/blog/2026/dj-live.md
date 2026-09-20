@@ -2,7 +2,8 @@
 title: 'DJ配信環境を作りたい'
 category: 'Music'
 pubDate: '2026-01-18'
-heroImage: '/src/assets/images/2026/dj-live/Saturday House Mix 35-6 screenshot.png'
+heroImage: '../../../assets/images/2026/dj-live/Saturday House Mix 35-6 screenshot.png'
+draft: false
 ---
 
 最近、Native InstrumentsのTraktor Kontrol S2 MK3を購入しました。

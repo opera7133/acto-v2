@@ -14,6 +14,20 @@ import path from "path";
 
 const execAsync = promisify(exec);
 const CMS_EDITOR_SETTINGS_KEY = "cms:editor:settings";
+const ARTICLE_ASSET_PREFIX = "../../../assets/";
+
+function getCmsImageUrl(imagePath: string): string {
+	if (imagePath.startsWith(ARTICLE_ASSET_PREFIX)) {
+		return `/api/image/src/assets/${imagePath.slice(ARTICLE_ASSET_PREFIX.length)}`;
+	}
+
+	// Keep previews working for articles not yet migrated.
+	if (imagePath.startsWith("/src/")) {
+		return `/api/image${imagePath}`;
+	}
+
+	return imagePath;
+}
 
 type CmsEditorSettings = {
 	autoSaveEnabled: boolean;
@@ -112,7 +126,7 @@ export async function action({ request, params }: Route.ActionArgs) {
 			console.log("Running:", command);
 			await execAsync(command);
 
-			const imagePath = `/src/assets/images/${year}/${slug}/${imageName}`;
+			const imagePath = `../../../assets/images/${year}/${slug}/${imageName}`;
 			return { success: true, generatedThumbnail: imagePath };
 		} catch (e: any) {
 			console.error("Thumbnail generation failed:", e);
@@ -429,7 +443,7 @@ export default function ArticleEditor({
 							{heroImage && category !== "Zakki" && (
 								<div className="mt-2 border border-gray-300 rounded p-1">
 									<img
-										src={`/api/image${heroImage}`}
+										src={getCmsImageUrl(heroImage)}
 										alt="Thumbnail Preview"
 										className="w-full h-auto rounded"
 										onError={(e) => {
@@ -476,13 +490,13 @@ export default function ArticleEditor({
 								key={img}
 								type="button"
 								onClick={() => {
-									const insert = `![](${img.replace("/src/", "../../../")})`;
+									const insert = `![](${img})`;
 									setContent((prev) => prev + "\n" + insert);
 								}}
 								className="border rounded hover:border-blue-500 overflow-hidden relative group"
 							>
 								<img
-									src={`/api/image${img}`}
+									src={getCmsImageUrl(img)}
 									alt={img}
 									className="w-full h-20 object-cover"
 								/>

@@ -3,7 +3,8 @@ title: 'Nextcloudとラズパイで公開クラウドストレージを作る方
 category: 'Server'
 pubDate: '2019-11-28'
 updatedDate: '2021-05-24'
-heroImage: '/src/assets/images/2019/next-rasp-server/rsp.png'
+heroImage: '../../../assets/images/2019/next-rasp-server/rsp.png'
+draft: false
 ---
 
 ### 構成

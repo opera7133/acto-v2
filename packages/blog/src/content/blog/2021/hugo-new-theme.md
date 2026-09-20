@@ -3,7 +3,8 @@ title: 'Hugoのテーマを作ろう'
 category: 'Web'
 pubDate: '2021-03-12'
 updatedDate: '2021-07-06'
-heroImage: '/src/assets/images/2021/hugo-new-theme/hugo.png'
+heroImage: '../../../assets/images/2021/hugo-new-theme/hugo.png'
+draft: false
 ---
 
 私がウェブサイトを作るときは、たいていHugoを使って作るのですが、そのたびに毎回適当な自作テーマを作っているので、備忘録として書き起こしておきます。

@@ -2,7 +2,8 @@
 title: '初めてクラブに行った時の記録'
 category: 'Music'
 pubDate: '2024-05-09'
-heroImage: '/src/assets/images/2024/club/mogra.jpg'
+heroImage: '../../../assets/images/2024/club/mogra.jpg'
+draft: false
 ---
 
 先日のM3でHYVEの新譜が出たため購入したのですが、CDと一緒にリリースパーティの案内を渡されました。

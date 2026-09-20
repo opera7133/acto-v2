@@ -2,7 +2,8 @@
 title: 'SUNMI T2 MINIを買いました + GMS有効化'
 category: 'Hardware'
 pubDate: '2024-05-25'
-heroImage: '/src/assets/images/2024/sunmi-t2-mini/hero.jpeg'
+heroImage: '../../../assets/images/2024/sunmi-t2-mini/hero.jpeg'
+draft: false
 ---
 
 ヤフオクでSUNMI T2 MINIを購入しました。
